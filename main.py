@@ -37,6 +37,7 @@ def neighbourhood_simmilarity(matrix, neighbourhood, target_node):
 def generate_new_node_naive(time_series_values, matrix: nx.classes.graph.Graph, neighbourhood_size: int, positive: bool,
                             draw: bool):
     new_node_index = len(matrix.nodes)
+    max_neighbourhood_size = neighbourhood_size*3
 
     # Create new node.
     neighbourhood = matrix.subgraph(list(range(new_node_index))[-neighbourhood_size:]).copy()
@@ -47,6 +48,13 @@ def generate_new_node_naive(time_series_values, matrix: nx.classes.graph.Graph, 
     for node in neighbourhood.nodes:
         previous_sim = -1
         node_edges = list(matrix.edges(node))
+        if len(node_edges) > max_neighbourhood_size:
+            pass
+        # Filter out long values
+        for edge in node_edges:
+            if edge[1] < new_node_index-max_neighbourhood_size:
+                node_edges.remove(edge)
+
         for edge in node_edges:
             matrix.add_edge(new_node_index, edge[1])
             sim = neighbourhood_simmilarity(matrix, neighbourhood, new_node_index)
