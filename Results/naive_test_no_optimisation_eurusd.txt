@@ -1,0 +1,289 @@
+C:\Users\Pajer\Documents\Magistrska_naloga\Scripts\python.exe C:\Users\Pajer\Documents\GitHub\Magistrska_naloga\main.py
+C:\Users\Pajer\Documents\Magistrska_naloga\lib\site-packages\yfinance\utils.py:775: FutureWarning: The 'unit' keyword in TimedeltaIndex construction is deprecated and will be removed in a future version. Use pd.to_timedelta instead.
+  df.index += _pd.TimedeltaIndex(dst_error_hours, 'h')
+[*********************100%%**********************]  1 of 1 completed
+Neighbourhood size: 2
+Data length:  206
+Hits:  114
+Hitrate pos: 0.5533980582524272
+Hits neg:  106
+Hitrate neg: 0.5145631067961165
+Hits avg:  110
+Hitrate avg: 0.5339805825242718
+
+
+Neighbourhood size: 3
+Data length:  206
+Hits:  106
+Hitrate pos: 0.5145631067961165
+Hits neg:  101
+Hitrate neg: 0.49029126213592233
+Hits avg:  112
+Hitrate avg: 0.5436893203883495
+
+
+Neighbourhood size: 4
+Data length:  206
+Hits:  103
+Hitrate pos: 0.5
+Hits neg:  103
+Hitrate neg: 0.5
+Hits avg:  98
+Hitrate avg: 0.47572815533980584
+
+
+Neighbourhood size: 5
+Data length:  206
+Hits:  106
+Hitrate pos: 0.5145631067961165
+Hits neg:  107
+Hitrate neg: 0.5194174757281553
+Hits avg:  110
+Hitrate avg: 0.5339805825242718
+
+
+Neighbourhood size: 6
+Data length:  206
+Hits:  100
+Hitrate pos: 0.4854368932038835
+Hits neg:  104
+Hitrate neg: 0.5048543689320388
+Hits avg:  106
+Hitrate avg: 0.5145631067961165
+
+
+Neighbourhood size: 7
+Data length:  206
+Hits:  108
+Hitrate pos: 0.5242718446601942
+Hits neg:  113
+Hitrate neg: 0.5485436893203883
+Hits avg:  106
+Hitrate avg: 0.5145631067961165
+
+
+Neighbourhood size: 8
+Data length:  206
+Hits:  108
+Hitrate pos: 0.5242718446601942
+Hits neg:  114
+Hitrate neg: 0.5533980582524272
+Hits avg:  104
+Hitrate avg: 0.5048543689320388
+
+
+Neighbourhood size: 9
+Data length:  206
+Hits:  105
+Hitrate pos: 0.5097087378640777
+Hits neg:  106
+Hitrate neg: 0.5145631067961165
+Hits avg:  106
+Hitrate avg: 0.5145631067961165
+
+
+Neighbourhood size: 10
+Data length:  206
+Hits:  108
+Hitrate pos: 0.5242718446601942
+Hits neg:  105
+Hitrate neg: 0.5097087378640777
+Hits avg:  110
+Hitrate avg: 0.5339805825242718
+
+
+Neighbourhood size: 11
+Data length:  206
+Hits:  107
+Hitrate pos: 0.5194174757281553
+Hits neg:  105
+Hitrate neg: 0.5097087378640777
+Hits avg:  109
+Hitrate avg: 0.529126213592233
+
+
+Neighbourhood size: 12
+Data length:  206
+Hits:  105
+Hitrate pos: 0.5097087378640777
+Hits neg:  105
+Hitrate neg: 0.5097087378640777
+Hits avg:  107
+Hitrate avg: 0.5194174757281553
+
+
+Neighbourhood size: 13
+Data length:  206
+Hits:  102
+Hitrate pos: 0.49514563106796117
+Hits neg:  110
+Hitrate neg: 0.5339805825242718
+Hits avg:  107
+Hitrate avg: 0.5194174757281553
+
+
+Neighbourhood size: 14
+Data length:  206
+Hits:  102
+Hitrate pos: 0.49514563106796117
+Hits neg:  109
+Hitrate neg: 0.529126213592233
+Hits avg:  108
+Hitrate avg: 0.5242718446601942
+
+
+Neighbourhood size: 15
+Data length:  206
+Hits:  105
+Hitrate pos: 0.5097087378640777
+Hits neg:  111
+Hitrate neg: 0.5388349514563107
+Hits avg:  106
+Hitrate avg: 0.5145631067961165
+
+
+Neighbourhood size: 16
+Data length:  206
+Hits:  103
+Hitrate pos: 0.5
+Hits neg:  111
+Hitrate neg: 0.5388349514563107
+Hits avg:  103
+Hitrate avg: 0.5
+
+
+Neighbourhood size: 17
+Data length:  206
+Hits:  108
+Hitrate pos: 0.5242718446601942
+Hits neg:  111
+Hitrate neg: 0.5388349514563107
+Hits avg:  109
+Hitrate avg: 0.529126213592233
+
+
+Neighbourhood size: 18
+Data length:  206
+Hits:  107
+Hitrate pos: 0.5194174757281553
+Hits neg:  107
+Hitrate neg: 0.5194174757281553
+Hits avg:  106
+Hitrate avg: 0.5145631067961165
+
+
+Neighbourhood size: 19
+Data length:  206
+Hits:  110
+Hitrate pos: 0.5339805825242718
+Hits neg:  102
+Hitrate neg: 0.49514563106796117
+Hits avg:  106
+Hitrate avg: 0.5145631067961165
+
+
+Neighbourhood size: 20
+Data length:  206
+Hits:  104
+Hitrate pos: 0.5048543689320388
+Hits neg:  107
+Hitrate neg: 0.5194174757281553
+Hits avg:  107
+Hitrate avg: 0.5194174757281553
+
+
+Neighbourhood size: 21
+Data length:  206
+Hits:  110
+Hitrate pos: 0.5339805825242718
+Hits neg:  104
+Hitrate neg: 0.5048543689320388
+Hits avg:  108
+Hitrate avg: 0.5242718446601942
+
+
+Neighbourhood size: 22
+Data length:  206
+Hits:  109
+Hitrate pos: 0.529126213592233
+Hits neg:  104
+Hitrate neg: 0.5048543689320388
+Hits avg:  103
+Hitrate avg: 0.5
+
+
+Neighbourhood size: 23
+Data length:  206
+Hits:  111
+Hitrate pos: 0.5388349514563107
+Hits neg:  108
+Hitrate neg: 0.5242718446601942
+Hits avg:  110
+Hitrate avg: 0.5339805825242718
+
+
+Neighbourhood size: 24
+Data length:  206
+Hits:  108
+Hitrate pos: 0.5242718446601942
+Hits neg:  109
+Hitrate neg: 0.529126213592233
+Hits avg:  105
+Hitrate avg: 0.5097087378640777
+
+
+Neighbourhood size: 25
+Data length:  206
+Hits:  108
+Hitrate pos: 0.5242718446601942
+Hits neg:  106
+Hitrate neg: 0.5145631067961165
+Hits avg:  106
+Hitrate avg: 0.5145631067961165
+
+
+Neighbourhood size: 26
+Data length:  206
+Hits:  109
+Hitrate pos: 0.529126213592233
+Hits neg:  110
+Hitrate neg: 0.5339805825242718
+Hits avg:  106
+Hitrate avg: 0.5145631067961165
+
+
+Neighbourhood size: 27
+Data length:  206
+Hits:  104
+Hitrate pos: 0.5048543689320388
+Hits neg:  109
+Hitrate neg: 0.529126213592233
+Hits avg:  106
+Hitrate avg: 0.5145631067961165
+
+
+Neighbourhood size: 28
+Data length:  206
+Hits:  107
+Hitrate pos: 0.5194174757281553
+Hits neg:  112
+Hitrate neg: 0.5436893203883495
+Hits avg:  110
+Hitrate avg: 0.5339805825242718
+
+
+Neighbourhood size: 29
+Data length:  206
+Hits:  103
+Hitrate pos: 0.5
+Hits neg:  114
+Hitrate neg: 0.5533980582524272
+Hits avg:  105
+Hitrate avg: 0.5097087378640777
+
+
+Max positive:  0.5533980582524272  At neighbourhood size: 2
+Max negative:  0.5533980582524272  At neighbourhood size: 8
+Max average:  0.5436893203883495  At neighbourhood size: 3
+
+Process finished with exit code 0
