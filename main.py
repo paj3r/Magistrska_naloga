@@ -6,6 +6,7 @@ import pandas_datareader.data as pdr
 import yfinance as yf
 from ts2vg import NaturalVG, HorizontalVG
 import matplotlib.pyplot as plt
+from heapq import nlargest
 import matplotlib.patches as patches
 
 from ts_to_vg import plot_ts_visibility  # Plotting function for visibility graph
@@ -51,6 +52,29 @@ def generate_new_node_zhang(time_series_values, matrix:nx.classes.graph.Graph, a
 
     prediction = ((time_series_values[last_node] - time_series_values[max_sim_ix])/(last_node - max_sim_ix)
                   + time_series_values[last_node])
+    return prediction
+
+def generate_new_node_zhang_extended(time_series_values, matrix:nx.classes.graph.Graph, length):
+    # Extended method of the proposed method by taking into account multiple nodes.
+    last_node = len(matrix.nodes)-1
+    sims = [0 for x in range(last_node)]
+    for node in matrix.nodes:
+        if node == last_node:
+            break
+        preds = nx.jaccard_coefficient(matrix, [(node, last_node)])
+        for u, v, p in preds:
+            temp_sim = p
+        sims[node] = temp_sim
+    n_sims = nlargest(length, sims)
+    n_sims_ix = nlargest(length, range(len(sims)), sims.__getitem__)
+
+    sum_sims = sum(n_sims)
+    if sum_sims == 0:
+        return 0
+    prediction = 0
+    for sim_ix in n_sims_ix:
+        prediction += ((time_series_values[last_node] - time_series_values[sim_ix])/(last_node - sim_ix)
+                      + time_series_values[last_node])*(sims[sim_ix]/sum_sims)
     return prediction
 
 
@@ -271,10 +295,98 @@ def test_zhang(dat):
     print("Hitrate avg: " + str(hits_avg / data))
 
 
+def test_zhang_extended(dat):
+    length_range = range(1, 30)
+    neg_dat = [-x for x in dat]
+    graph = NaturalVG()
+    graph.build(dat)
+    neg_graph = NaturalVG()
+    neg_graph.build(neg_dat)
+
+    network = graph.as_networkx()
+    neg_network = neg_graph.as_networkx()
+
+    # new_value = generate_new_node_naive(dat, network, neighbourhood_size, True, False)
+    # new_value_neg = generate_new_node_naive(dat, neg_network, neighbourhood_size, False, False)
+    # print(adj_matrix)
+    max_pos = 0
+    max_pos_ix = 0
+    max_neg = 0
+    max_neg_ix = 0
+    max_avg = 0
+    max_avg_ix = 0
+    for length in length_range:
+        print("Length size:", length)
+        predictions = np.zeros(length)
+        neg_predictions = np.zeros(length)
+        for i in range(length, len(dat)):
+            rolling_dat = dat[:i]
+            rolling_network = network.subgraph(list(range(0, i))).copy()
+            rolling_neg_network = neg_network.subgraph(list(range(0, i))).copy()
+            new_value = generate_new_node_zhang_extended(rolling_dat, rolling_network, length)
+            new_value_neg = generate_new_node_zhang_extended(rolling_dat, rolling_neg_network, length)
+            predictions = np.append(predictions, new_value)
+            neg_predictions = np.append(neg_predictions, new_value_neg)
+
+        # Check positive hitrate
+        hits_pos = 0
+        data = 0
+        for i in range(1, len(dat)):
+            if dat[i - 1] < predictions[i] and dat[i - 1] < dat[i]:
+                hits_pos += 1
+            elif dat[i - 1] > predictions[i] and dat[i - 1] > dat[i]:
+                hits_pos += 1
+            data += 1
+        if max_pos < hits_pos / data:
+            max_pos = hits_pos / data
+            max_pos_ix = length
+
+        hits_neg = 0
+        # Check negative hitrate
+        for i in range(1, len(dat)):
+            if dat[i - 1] < neg_predictions[i] and dat[i - 1] < dat[i]:
+                hits_neg += 1
+            elif dat[i - 1] > neg_predictions[i] and dat[i - 1] > dat[i]:
+                hits_neg += 1
+        if max_neg < hits_neg / data:
+            max_neg = hits_neg / data
+            max_neg_ix = length
+
+        hits_avg = 0
+        # Check negative hitrate
+        for i in range(1, len(dat)):
+            val = (neg_predictions[i] + predictions[i]) / 2
+            if dat[i - 1] < val and dat[i - 1] < dat[i]:
+                hits_avg += 1
+            elif dat[i - 1] > val and dat[i - 1] > dat[i]:
+                hits_avg += 1
+        if max_avg < hits_avg / data:
+            max_avg = hits_avg / data
+            max_avg_ix = length
+
+        print("Data length: ", data)
+        print("Hits: ", hits_pos)
+        print("Hitrate pos: " + str(hits_pos / data))
+        print("Hits neg: ", hits_neg)
+        print("Hitrate neg: " + str(hits_neg / data))
+        print("Hits avg: ", hits_avg)
+        print("Hitrate avg: " + str(hits_avg / data))
+        # diff = dat - predictions
+        # neg_diff = dat - neg_predictions
+        # avg_diff = (dat - (predictions + neg_predictions)/2)
+        # print("Avg diff on positive: ", np.average(diff))
+        # print("Avg diff on negative: ", np.average(neg_diff))
+        # print("Avg diff: ", np.average(avg_diff))
+        print("\n")
+        pass
+    print("Max positive: ", max_pos, " At neighbourhood size:", max_pos_ix)
+    print("Max negative: ", max_neg, " At neighbourhood size:", max_neg_ix)
+    print("Max average: ", max_avg, " At neighbourhood size:", max_avg_ix)
+
 if __name__ == '__main__':
     yf.pdr_override()
-    dat = np.loadtxt("TestData/btcusd.csv")
-    test_zhang(dat)
+    data = np.loadtxt("TestData/snp500.csv")
+    test_zhang_extended(data)
     # dat = [1.0, 0.5, 0.3, 0.7, 1.0, 0.5, 0.3, 0.8, 1.0, 0.4]
 
 
