@@ -7,6 +7,7 @@ import yfinance as yf
 from ts2vg import NaturalVG, HorizontalVG
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+from heapq import nlargest
 
 def neighbourhood_simmilarity(matrix, neighbourhood, target_node):
     sum = 0
@@ -18,6 +19,59 @@ def neighbourhood_simmilarity(matrix, neighbourhood, target_node):
         sum += p
     return sum / len(neighbourhood)
 
+
+def generate_new_node_zhang(time_series_values, ahead=1):
+    # proposed method in this paper: https://www.sciencedirect.com/science/article/pii/S0378437117310622
+    graph = NaturalVG()
+    graph.build(time_series_values)
+
+    matrix = graph.as_networkx()
+
+    max_sim = 0
+    max_sim_ix = 0
+    last_node = len(matrix.nodes)-1
+    for node in matrix.nodes:
+        if node == last_node:
+            break
+        preds = nx.jaccard_coefficient(matrix, [(node, last_node)])
+        for u, v, p in preds:
+            temp_sim = p
+        if temp_sim > max_sim:
+            max_sim = temp_sim
+            max_sim_ix = node
+
+    prediction = ((time_series_values[last_node] - time_series_values[max_sim_ix])/(last_node - max_sim_ix)
+                  + time_series_values[last_node])
+
+    return prediction
+
+def generate_new_node_zhang_extended(time_series_values, length):
+    # Extended method of the proposed method by taking into account multiple nodes.
+
+    graph = NaturalVG()
+    graph.build(time_series_values)
+
+    matrix = graph.as_networkx()
+    last_node = len(matrix.nodes)-1
+    sims = [0 for x in range(last_node)]
+    for node in matrix.nodes:
+        if node == last_node:
+            break
+        preds = nx.jaccard_coefficient(matrix, [(node, last_node)])
+        for u, v, p in preds:
+            temp_sim = p
+        sims[node] = temp_sim
+    n_sims = nlargest(length, sims)
+    n_sims_ix = nlargest(length, range(len(sims)), sims.__getitem__)
+
+    sum_sims = sum(n_sims)
+    if sum_sims == 0:
+        return 0
+    prediction = 0
+    for sim_ix in n_sims_ix:
+        prediction += ((time_series_values[last_node] - time_series_values[sim_ix])/(last_node - sim_ix)
+                      + time_series_values[last_node])*(sims[sim_ix]/sum_sims)
+    return prediction
 
 def generate_new_node_naive(time_series_values, neighbourhood_size: int):
     graph = NaturalVG()

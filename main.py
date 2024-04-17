@@ -8,9 +8,34 @@ from ts2vg import NaturalVG, HorizontalVG
 import matplotlib.pyplot as plt
 from heapq import nlargest
 import matplotlib.patches as patches
+from sklearn.metrics import mean_absolute_error as mae, mean_squared_error as mse, mean_absolute_percentage_error as mape
 
 from ts_to_vg import plot_ts_visibility  # Plotting function for visibility graph
 
+
+def print_statistics(actual, positive, negative, average):
+    plt.plot(actual, label="Original data")
+    plt.plot(positive, label="Positive predictions")
+    plt.plot(negative, label="Negative predictions")
+    plt.plot(average, label="Average predictions")
+    plt.legend()
+    plt.show()
+    # remove nan.
+    positive = positive[~np.isnan(positive)]
+    negative = negative[~np.isnan(negative)]
+    average = average[~np.isnan(average)]
+    print("\n")
+    print("Positive MAE: ", mae(actual[:len(positive)], positive))
+    print("Negative MAE: ", mae(actual[:len(negative)], negative))
+    print("Average MAE: ", mae(actual[:len(average)], average))
+    print("\n")
+    print("Positive MSE:", mse(actual[:len(positive)], positive))
+    print("Negative MSE:", mse(actual[:len(negative)], negative))
+    print("Average MSE:", mse(actual[:len(average)], average))
+    print("\n")
+    print("Positive MAPE:", mape(actual[:len(positive)], positive))
+    print("Negative MAPE:", mape(actual[:len(negative)], negative))
+    print("Average MAPE:", mape(actual[:len(average)], average))
 
 def vizualize_matrix(matrix, data, positive: bool):
     n_nodes = len(matrix.nodes)
@@ -167,14 +192,19 @@ def test_naive(dat):
     # print(adj_matrix)
     max_pos = 0
     max_pos_ix = 0
+    max_pos_preds = []
     max_neg = 0
     max_neg_ix = 0
+    max_neg_preds = []
     max_avg = 0
     max_avg_ix = 0
+    max_avg_preds = []
     for neighbourhood_size in neighbourhood_range:
         print("Neighbourhood size:", neighbourhood_size)
-        predictions = np.zeros(start_offset)
-        neg_predictions = np.zeros(start_offset)
+        predictions = np.empty(start_offset)
+        predictions[:] = np.nan
+        neg_predictions = np.empty(start_offset)
+        neg_predictions[:] = np.nan
         for i in range(start_offset, len(dat)):
             rolling_dat = dat[:i]
             rolling_network = network.subgraph(list(range(0, i))).copy()
@@ -198,6 +228,7 @@ def test_naive(dat):
         if max_pos < hits_pos / data:
             max_pos = hits_pos / data
             max_pos_ix = neighbourhood_size
+            max_pos_preds = predictions
         hits_neg = 0
         # Check negative hitrate
         for i in range(start_offset, len(dat)):
@@ -208,9 +239,11 @@ def test_naive(dat):
         if max_neg < hits_neg / data:
             max_neg = hits_neg / data
             max_neg_ix = neighbourhood_size
+            max_neg_preds = neg_predictions
 
         hits_avg = 0
         # Check negative hitrate
+        temp_avg_preds = []
         for i in range(start_offset, len(dat)):
             val = (neg_predictions[i] + predictions[i]) / 2
             if dat[i - 1] < val and dat[i - 1] < dat[i]:
@@ -220,6 +253,7 @@ def test_naive(dat):
         if max_avg < hits_avg / data:
             max_avg = hits_avg / data
             max_avg_ix = neighbourhood_size
+            max_avg_preds = (max_pos_preds + max_neg_preds) / 2
         print("Data length: ", data)
         print("Hits: ", hits_pos)
         print("Hitrate pos: " + str(hits_pos / data))
@@ -238,6 +272,8 @@ def test_naive(dat):
     print("Max positive: ", max_pos, " At neighbourhood size:", max_pos_ix)
     print("Max negative: ", max_neg, " At neighbourhood size:", max_neg_ix)
     print("Max average: ", max_avg, " At neighbourhood size:", max_avg_ix)
+    print_statistics(dat, max_pos_preds, max_neg_preds, max_avg_preds)
+
 
 def test_zhang(dat):
     neg_dat = [-x for x in dat]
@@ -251,8 +287,11 @@ def test_zhang(dat):
 
     hits = 0
     data = 0
-    predictions = np.zeros(start_offset)
-    neg_predictions = np.zeros(start_offset)
+    preds = []
+    predictions = np.empty(start_offset)
+    predictions[:] = np.nan
+    neg_predictions = np.empty(start_offset)
+    neg_predictions[:] = np.nan
     # 30 days of learning period.
     for i in range(start_offset, len(dat)):
         rolling_dat = dat[:i]
@@ -297,6 +336,10 @@ def test_zhang(dat):
     print("Hitrate neg: " + str(hits_neg / data))
     print("Hits avg: ", hits_avg)
     print("Hitrate avg: " + str(hits_avg / data))
+    avg_predictions = (predictions + neg_predictions) / 2
+    print_statistics(dat, predictions, neg_predictions, avg_predictions)
+
+
 
 
 def test_zhang_extended(dat):
@@ -316,10 +359,13 @@ def test_zhang_extended(dat):
     # print(adj_matrix)
     max_pos = 0
     max_pos_ix = 0
+    max_pos_preds = []
     max_neg = 0
     max_neg_ix = 0
+    max_neg_preds = []
     max_avg = 0
     max_avg_ix = 0
+    max_avg_preds = []
     for length in length_range:
         print("Length size:", length)
         predictions = np.zeros(start_offset)
@@ -345,6 +391,7 @@ def test_zhang_extended(dat):
         if max_pos < hits_pos / data:
             max_pos = hits_pos / data
             max_pos_ix = length
+            max_pos_preds = predictions
 
         hits_neg = 0
         # Check negative hitrate
@@ -356,6 +403,7 @@ def test_zhang_extended(dat):
         if max_neg < hits_neg / data:
             max_neg = hits_neg / data
             max_neg_ix = length
+            max_neg_preds = neg_predictions
 
         hits_avg = 0
         # Check negative hitrate
@@ -368,6 +416,7 @@ def test_zhang_extended(dat):
         if max_avg < hits_avg / data:
             max_avg = hits_avg / data
             max_avg_ix = length
+            max_avg_preds = (max_pos_preds + max_neg_preds) / 2
 
         print("Data length: ", data)
         print("Hits: ", hits_pos)
@@ -376,22 +425,17 @@ def test_zhang_extended(dat):
         print("Hitrate neg: " + str(hits_neg / data))
         print("Hits avg: ", hits_avg)
         print("Hitrate avg: " + str(hits_avg / data))
-        # diff = dat - predictions
-        # neg_diff = dat - neg_predictions
-        # avg_diff = (dat - (predictions + neg_predictions)/2)
-        # print("Avg diff on positive: ", np.average(diff))
-        # print("Avg diff on negative: ", np.average(neg_diff))
-        # print("Avg diff: ", np.average(avg_diff))
         print("\n")
         pass
     print("Max positive: ", max_pos, " At neighbourhood size:", max_pos_ix)
     print("Max negative: ", max_neg, " At neighbourhood size:", max_neg_ix)
     print("Max average: ", max_avg, " At neighbourhood size:", max_avg_ix)
+    print_statistics(dat, max_pos_preds, max_neg_preds, max_avg_preds)
 
 if __name__ == '__main__':
     yf.pdr_override()
     data = np.loadtxt("TestData/btcusd.csv")
-    test_naive(data)
+    test_zhang(data)
     # dat = [1.0, 0.5, 0.3, 0.7, 1.0, 0.5, 0.3, 0.8, 1.0, 0.4]
 
 
