@@ -52,6 +52,7 @@ def generate_new_node_zhang(time_series_values, matrix:nx.classes.graph.Graph, a
 
     prediction = ((time_series_values[last_node] - time_series_values[max_sim_ix])/(last_node - max_sim_ix)
                   + time_series_values[last_node])
+
     return prediction
 
 def generate_new_node_zhang_extended(time_series_values, matrix:nx.classes.graph.Graph, length):
@@ -151,6 +152,7 @@ def get_1day_data(names, startdate, enddate):
 
 def test_naive(dat):
     neighbourhood_range = range(2, 30)
+    start_offset = 30
     neg_dat = [-x for x in dat]
     graph = NaturalVG()
     graph.build(dat)
@@ -171,9 +173,9 @@ def test_naive(dat):
     max_avg_ix = 0
     for neighbourhood_size in neighbourhood_range:
         print("Neighbourhood size:", neighbourhood_size)
-        predictions = np.zeros(neighbourhood_size)
-        neg_predictions = np.zeros(neighbourhood_size)
-        for i in range(neighbourhood_size, len(dat)):
+        predictions = np.zeros(start_offset)
+        neg_predictions = np.zeros(start_offset)
+        for i in range(start_offset, len(dat)):
             rolling_dat = dat[:i]
             rolling_network = network.subgraph(list(range(0, i))).copy()
             rolling_neg_network = neg_network.subgraph(list(range(0, i))).copy()
@@ -187,7 +189,7 @@ def test_naive(dat):
         # Check positive hitrate
         hits_pos = 0
         data = 0
-        for i in range(1, len(dat)):
+        for i in range(start_offset, len(dat)):
             if dat[i - 1] < predictions[i] and dat[i - 1] < dat[i]:
                 hits_pos += 1
             elif dat[i - 1] > predictions[i] and dat[i - 1] > dat[i]:
@@ -198,7 +200,7 @@ def test_naive(dat):
             max_pos_ix = neighbourhood_size
         hits_neg = 0
         # Check negative hitrate
-        for i in range(1, len(dat)):
+        for i in range(start_offset, len(dat)):
             if dat[i - 1] < neg_predictions[i] and dat[i - 1] < dat[i]:
                 hits_neg += 1
             elif dat[i - 1] > neg_predictions[i] and dat[i - 1] > dat[i]:
@@ -209,7 +211,7 @@ def test_naive(dat):
 
         hits_avg = 0
         # Check negative hitrate
-        for i in range(1, len(dat)):
+        for i in range(start_offset, len(dat)):
             val = (neg_predictions[i] + predictions[i]) / 2
             if dat[i - 1] < val and dat[i - 1] < dat[i]:
                 hits_avg += 1
@@ -239,6 +241,7 @@ def test_naive(dat):
 
 def test_zhang(dat):
     neg_dat = [-x for x in dat]
+    start_offset = 30
     graph = NaturalVG()
     graph.build(dat)
     neg_graph = NaturalVG()
@@ -248,9 +251,10 @@ def test_zhang(dat):
 
     hits = 0
     data = 0
-    predictions = np.zeros(1)
-    neg_predictions = np.zeros(1)
-    for i in range(1, len(dat)):
+    predictions = np.zeros(start_offset)
+    neg_predictions = np.zeros(start_offset)
+    # 30 days of learning period.
+    for i in range(start_offset, len(dat)):
         rolling_dat = dat[:i]
         rolling_network = network.subgraph(list(range(0, i))).copy()
         rolling_neg_network = neg_network.subgraph(list(range(0, i))).copy()
@@ -262,7 +266,7 @@ def test_zhang(dat):
     # Check positive hitrate
     hits_pos = 0
     data = 0
-    for i in range(1, len(dat)):
+    for i in range(start_offset, len(dat)):
         if dat[i - 1] < predictions[i] and dat[i - 1] < dat[i]:
             hits_pos += 1
         elif dat[i - 1] > predictions[i] and dat[i - 1] > dat[i]:
@@ -271,7 +275,7 @@ def test_zhang(dat):
 
     hits_neg = 0
     # Check negative hitrate
-    for i in range(1, len(dat)):
+    for i in range(start_offset, len(dat)):
         if dat[i - 1] < neg_predictions[i] and dat[i - 1] < dat[i]:
             hits_neg += 1
         elif dat[i - 1] > neg_predictions[i] and dat[i - 1] > dat[i]:
@@ -279,7 +283,7 @@ def test_zhang(dat):
 
     hits_avg = 0
     # Check negative hitrate
-    for i in range(1, len(dat)):
+    for i in range(start_offset, len(dat)):
         val = (neg_predictions[i] + predictions[i]) / 2
         if dat[i - 1] < val and dat[i - 1] < dat[i]:
             hits_avg += 1
@@ -297,6 +301,7 @@ def test_zhang(dat):
 
 def test_zhang_extended(dat):
     length_range = range(1, 30)
+    start_offset = 30
     neg_dat = [-x for x in dat]
     graph = NaturalVG()
     graph.build(dat)
@@ -317,9 +322,9 @@ def test_zhang_extended(dat):
     max_avg_ix = 0
     for length in length_range:
         print("Length size:", length)
-        predictions = np.zeros(length)
-        neg_predictions = np.zeros(length)
-        for i in range(length, len(dat)):
+        predictions = np.zeros(start_offset)
+        neg_predictions = np.zeros(start_offset)
+        for i in range(start_offset, len(dat)):
             rolling_dat = dat[:i]
             rolling_network = network.subgraph(list(range(0, i))).copy()
             rolling_neg_network = neg_network.subgraph(list(range(0, i))).copy()
@@ -331,7 +336,7 @@ def test_zhang_extended(dat):
         # Check positive hitrate
         hits_pos = 0
         data = 0
-        for i in range(1, len(dat)):
+        for i in range(start_offset, len(dat)):
             if dat[i - 1] < predictions[i] and dat[i - 1] < dat[i]:
                 hits_pos += 1
             elif dat[i - 1] > predictions[i] and dat[i - 1] > dat[i]:
@@ -343,7 +348,7 @@ def test_zhang_extended(dat):
 
         hits_neg = 0
         # Check negative hitrate
-        for i in range(1, len(dat)):
+        for i in range(start_offset, len(dat)):
             if dat[i - 1] < neg_predictions[i] and dat[i - 1] < dat[i]:
                 hits_neg += 1
             elif dat[i - 1] > neg_predictions[i] and dat[i - 1] > dat[i]:
@@ -354,7 +359,7 @@ def test_zhang_extended(dat):
 
         hits_avg = 0
         # Check negative hitrate
-        for i in range(1, len(dat)):
+        for i in range(start_offset, len(dat)):
             val = (neg_predictions[i] + predictions[i]) / 2
             if dat[i - 1] < val and dat[i - 1] < dat[i]:
                 hits_avg += 1
@@ -385,8 +390,8 @@ def test_zhang_extended(dat):
 
 if __name__ == '__main__':
     yf.pdr_override()
-    data = np.loadtxt("TestData/snp500.csv")
-    test_zhang_extended(data)
+    data = np.loadtxt("TestData/btcusd.csv")
+    test_naive(data)
     # dat = [1.0, 0.5, 0.3, 0.7, 1.0, 0.5, 0.3, 0.8, 1.0, 0.4]
 
 

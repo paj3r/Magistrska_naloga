@@ -1,7 +1,7 @@
-Data length:  290
-Hits:  137
-Hitrate pos: 0.4724137931034483
-Hits neg:  138
-Hitrate neg: 0.47586206896551725
-Hits avg:  136
-Hitrate avg: 0.4689655172413793
+Data length:  261
+Hits:  126
+Hitrate pos: 0.4827586206896552
+Hits neg:  124
+Hitrate neg: 0.47509578544061304
+Hits avg:  124
+Hitrate avg: 0.47509578544061304

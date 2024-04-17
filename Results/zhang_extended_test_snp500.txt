@@ -1,296 +1,294 @@
 C:\Users\Pajer\Documents\Magistrska_naloga\Scripts\python.exe C:\Users\Pajer\Documents\GitHub\Magistrska_naloga\main.py 
 Length size: 1
-Data length:  199
-Hits:  104
-Hitrate pos: 0.5226130653266332
-Hits neg:  100
-Hitrate neg: 0.5025125628140703
-Hits avg:  102
-Hitrate avg: 0.5125628140703518
+Data length:  170
+Hits:  89
+Hitrate pos: 0.5235294117647059
+Hits neg:  85
+Hitrate neg: 0.5
+Hits avg:  85
+Hitrate avg: 0.5
 
 
 Length size: 2
-Data length:  199
-Hits:  101
-Hitrate pos: 0.507537688442211
-Hits neg:  104
-Hitrate neg: 0.5226130653266332
-Hits avg:  105
-Hitrate avg: 0.5276381909547738
+Data length:  170
+Hits:  83
+Hitrate pos: 0.48823529411764705
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 3
-Data length:  199
-Hits:  105
-Hitrate pos: 0.5276381909547738
-Hits neg:  102
-Hitrate neg: 0.5125628140703518
-Hits avg:  108
-Hitrate avg: 0.542713567839196
+Data length:  170
+Hits:  88
+Hitrate pos: 0.5176470588235295
+Hits neg:  85
+Hitrate neg: 0.5
+Hits avg:  91
+Hitrate avg: 0.5352941176470588
 
 
 Length size: 4
-Data length:  199
-Hits:  106
-Hitrate pos: 0.5326633165829145
-Hits neg:  106
-Hitrate neg: 0.5326633165829145
-Hits avg:  109
-Hitrate avg: 0.5477386934673367
+Data length:  170
+Hits:  90
+Hitrate pos: 0.5294117647058824
+Hits neg:  89
+Hitrate neg: 0.5235294117647059
+Hits avg:  92
+Hitrate avg: 0.5411764705882353
 
 
 Length size: 5
-Data length:  199
-Hits:  103
-Hitrate pos: 0.5175879396984925
-Hits neg:  104
-Hitrate neg: 0.5226130653266332
-Hits avg:  108
-Hitrate avg: 0.542713567839196
+Data length:  170
+Hits:  88
+Hitrate pos: 0.5176470588235295
+Hits neg:  88
+Hitrate neg: 0.5176470588235295
+Hits avg:  91
+Hitrate avg: 0.5352941176470588
 
 
 Length size: 6
-Data length:  199
-Hits:  103
-Hitrate pos: 0.5175879396984925
-Hits neg:  102
-Hitrate neg: 0.5125628140703518
-Hits avg:  106
-Hitrate avg: 0.5326633165829145
+Data length:  170
+Hits:  90
+Hitrate pos: 0.5294117647058824
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  91
+Hitrate avg: 0.5352941176470588
 
 
 Length size: 7
-Data length:  199
-Hits:  101
-Hitrate pos: 0.507537688442211
-Hits neg:  103
-Hitrate neg: 0.5175879396984925
-Hits avg:  104
-Hitrate avg: 0.5226130653266332
+Data length:  170
+Hits:  89
+Hitrate pos: 0.5235294117647059
+Hits neg:  89
+Hitrate neg: 0.5235294117647059
+Hits avg:  90
+Hitrate avg: 0.5294117647058824
 
 
 Length size: 8
-Data length:  199
-Hits:  102
-Hitrate pos: 0.5125628140703518
-Hits neg:  100
-Hitrate neg: 0.5025125628140703
-Hits avg:  104
-Hitrate avg: 0.5226130653266332
+Data length:  170
+Hits:  91
+Hitrate pos: 0.5352941176470588
+Hits neg:  88
+Hitrate neg: 0.5176470588235295
+Hits avg:  91
+Hitrate avg: 0.5352941176470588
 
 
 Length size: 9
-Data length:  199
-Hits:  103
-Hitrate pos: 0.5175879396984925
-Hits neg:  100
-Hitrate neg: 0.5025125628140703
-Hits avg:  102
-Hitrate avg: 0.5125628140703518
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  89
+Hitrate neg: 0.5235294117647059
+Hits avg:  90
+Hitrate avg: 0.5294117647058824
 
 
 Length size: 10
-Data length:  199
-Hits:  104
-Hitrate pos: 0.5226130653266332
-Hits neg:  100
-Hitrate neg: 0.5025125628140703
-Hits avg:  103
-Hitrate avg: 0.5175879396984925
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  88
+Hitrate neg: 0.5176470588235295
+Hits avg:  90
+Hitrate avg: 0.5294117647058824
 
 
 Length size: 11
-Data length:  199
-Hits:  105
-Hitrate pos: 0.5276381909547738
-Hits neg:  101
-Hitrate neg: 0.507537688442211
-Hits avg:  104
-Hitrate avg: 0.5226130653266332
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  88
+Hitrate neg: 0.5176470588235295
+Hits avg:  90
+Hitrate avg: 0.5294117647058824
 
 
 Length size: 12
-Data length:  199
-Hits:  105
-Hitrate pos: 0.5276381909547738
-Hits neg:  100
-Hitrate neg: 0.5025125628140703
-Hits avg:  104
-Hitrate avg: 0.5226130653266332
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  86
+Hitrate neg: 0.5058823529411764
+Hits avg:  90
+Hitrate avg: 0.5294117647058824
 
 
 Length size: 13
-Data length:  199
-Hits:  105
-Hitrate pos: 0.5276381909547738
-Hits neg:  100
-Hitrate neg: 0.5025125628140703
-Hits avg:  103
-Hitrate avg: 0.5175879396984925
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  86
+Hitrate neg: 0.5058823529411764
+Hits avg:  89
+Hitrate avg: 0.5235294117647059
 
 
 Length size: 14
-Data length:  199
-Hits:  106
-Hitrate pos: 0.5326633165829145
-Hits neg:  101
-Hitrate neg: 0.507537688442211
-Hits avg:  104
-Hitrate avg: 0.5226130653266332
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  86
+Hitrate neg: 0.5058823529411764
+Hits avg:  89
+Hitrate avg: 0.5235294117647059
 
 
 Length size: 15
-Data length:  199
-Hits:  106
-Hitrate pos: 0.5326633165829145
-Hits neg:  101
-Hitrate neg: 0.507537688442211
-Hits avg:  104
-Hitrate avg: 0.5226130653266332
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  86
+Hitrate neg: 0.5058823529411764
+Hits avg:  89
+Hitrate avg: 0.5235294117647059
 
 
 Length size: 16
-Data length:  199
-Hits:  106
-Hitrate pos: 0.5326633165829145
-Hits neg:  101
-Hitrate neg: 0.507537688442211
-Hits avg:  104
-Hitrate avg: 0.5226130653266332
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  86
+Hitrate neg: 0.5058823529411764
+Hits avg:  89
+Hitrate avg: 0.5235294117647059
 
 
 Length size: 17
-Data length:  199
-Hits:  107
-Hitrate pos: 0.5376884422110553
-Hits neg:  103
-Hitrate neg: 0.5175879396984925
-Hits avg:  104
-Hitrate avg: 0.5226130653266332
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 18
-Data length:  199
-Hits:  106
-Hitrate pos: 0.5326633165829145
-Hits neg:  105
-Hitrate neg: 0.5276381909547738
-Hits avg:  103
-Hitrate avg: 0.5175879396984925
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  90
+Hitrate neg: 0.5294117647058824
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 19
-Data length:  199
-Hits:  105
-Hitrate pos: 0.5276381909547738
-Hits neg:  102
-Hitrate neg: 0.5125628140703518
-Hits avg:  102
-Hitrate avg: 0.5125628140703518
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  88
+Hitrate neg: 0.5176470588235295
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 20
-Data length:  199
-Hits:  104
-Hitrate pos: 0.5226130653266332
-Hits neg:  100
-Hitrate neg: 0.5025125628140703
-Hits avg:  101
-Hitrate avg: 0.507537688442211
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 21
-Data length:  199
-Hits:  105
-Hitrate pos: 0.5276381909547738
-Hits neg:  101
-Hitrate neg: 0.507537688442211
-Hits avg:  102
-Hitrate avg: 0.5125628140703518
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 22
-Data length:  199
-Hits:  106
-Hitrate pos: 0.5326633165829145
-Hits neg:  102
-Hitrate neg: 0.5125628140703518
-Hits avg:  103
-Hitrate avg: 0.5175879396984925
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 23
-Data length:  199
-Hits:  106
-Hitrate pos: 0.5326633165829145
-Hits neg:  102
-Hitrate neg: 0.5125628140703518
-Hits avg:  103
-Hitrate avg: 0.5175879396984925
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 24
-Data length:  199
-Hits:  106
-Hitrate pos: 0.5326633165829145
-Hits neg:  102
-Hitrate neg: 0.5125628140703518
-Hits avg:  103
-Hitrate avg: 0.5175879396984925
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 25
-Data length:  199
-Hits:  106
-Hitrate pos: 0.5326633165829145
-Hits neg:  101
-Hitrate neg: 0.507537688442211
-Hits avg:  102
-Hitrate avg: 0.5125628140703518
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 26
-Data length:  199
-Hits:  105
-Hitrate pos: 0.5276381909547738
-Hits neg:  100
-Hitrate neg: 0.5025125628140703
-Hits avg:  101
-Hitrate avg: 0.507537688442211
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 27
-Data length:  199
-Hits:  104
-Hitrate pos: 0.5226130653266332
-Hits neg:  99
-Hitrate neg: 0.49748743718592964
-Hits avg:  100
-Hitrate avg: 0.5025125628140703
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  87
+Hitrate neg: 0.5117647058823529
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 28
-Data length:  199
-Hits:  105
-Hitrate pos: 0.5276381909547738
-Hits neg:  101
-Hitrate neg: 0.507537688442211
-Hits avg:  101
-Hitrate avg: 0.507537688442211
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  88
+Hitrate neg: 0.5176470588235295
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
 Length size: 29
-Data length:  199
-Hits:  104
-Hitrate pos: 0.5226130653266332
-Hits neg:  101
-Hitrate neg: 0.507537688442211
-Hits avg:  100
-Hitrate avg: 0.5025125628140703
+Data length:  170
+Hits:  92
+Hitrate pos: 0.5411764705882353
+Hits neg:  89
+Hitrate neg: 0.5235294117647059
+Hits avg:  88
+Hitrate avg: 0.5176470588235295
 
 
-Max positive:  0.5376884422110553  At neighbourhood size: 17
-Max negative:  0.5326633165829145  At neighbourhood size: 4
-Max average:  0.5477386934673367  At neighbourhood size: 4
-
-Process finished with exit code 0
+Max positive:  0.5411764705882353  At neighbourhood size: 9
+Max negative:  0.5294117647058824  At neighbourhood size: 18
+Max average:  0.5411764705882353  At neighbourhood size: 4

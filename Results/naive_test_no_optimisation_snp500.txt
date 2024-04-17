@@ -1,289 +1,284 @@
 C:\Users\Pajer\Documents\Magistrska_naloga\Scripts\python.exe C:\Users\Pajer\Documents\GitHub\Magistrska_naloga\main.py
-C:\Users\Pajer\Documents\Magistrska_naloga\lib\site-packages\yfinance\utils.py:775: FutureWarning: The 'unit' keyword in TimedeltaIndex construction is deprecated and will be removed in a future version. Use pd.to_timedelta instead.
-  df.index += _pd.TimedeltaIndex(dst_error_hours, 'h')
-[*********************100%%**********************]  1 of 1 completed
 Neighbourhood size: 2
-Data length:  198
-Hits:  98
-Hitrate pos: 0.494949494949495
-Hits neg:  84
-Hitrate neg: 0.42424242424242425
-Hits avg:  83
-Hitrate avg: 0.41919191919191917
+Data length:  170
+Hits:  86
+Hitrate pos: 0.5058823529411764
+Hits neg:  71
+Hitrate neg: 0.4176470588235294
+Hits avg:  71
+Hitrate avg: 0.4176470588235294
 
 
 Neighbourhood size: 3
-Data length:  198
-Hits:  104
-Hitrate pos: 0.5252525252525253
-Hits neg:  81
-Hitrate neg: 0.4090909090909091
-Hits avg:  90
-Hitrate avg: 0.45454545454545453
+Data length:  170
+Hits:  89
+Hitrate pos: 0.5235294117647059
+Hits neg:  71
+Hitrate neg: 0.4176470588235294
+Hits avg:  76
+Hitrate avg: 0.4470588235294118
 
 
 Neighbourhood size: 4
-Data length:  198
-Hits:  101
-Hitrate pos: 0.51010101010101
-Hits neg:  87
-Hitrate neg: 0.4393939393939394
-Hits avg:  87
-Hitrate avg: 0.4393939393939394
+Data length:  170
+Hits:  88
+Hitrate pos: 0.5176470588235295
+Hits neg:  76
+Hitrate neg: 0.4470588235294118
+Hits avg:  75
+Hitrate avg: 0.4411764705882353
 
 
 Neighbourhood size: 5
-Data length:  198
-Hits:  102
-Hitrate pos: 0.5151515151515151
-Hits neg:  87
-Hitrate neg: 0.4393939393939394
-Hits avg:  86
-Hitrate avg: 0.43434343434343436
+Data length:  170
+Hits:  88
+Hitrate pos: 0.5176470588235295
+Hits neg:  74
+Hitrate neg: 0.43529411764705883
+Hits avg:  75
+Hitrate avg: 0.4411764705882353
 
 
 Neighbourhood size: 6
-Data length:  198
-Hits:  95
-Hitrate pos: 0.4797979797979798
-Hits neg:  89
-Hitrate neg: 0.4494949494949495
-Hits avg:  89
-Hitrate avg: 0.4494949494949495
+Data length:  170
+Hits:  83
+Hitrate pos: 0.48823529411764705
+Hits neg:  77
+Hitrate neg: 0.45294117647058824
+Hits avg:  76
+Hitrate avg: 0.4470588235294118
 
 
 Neighbourhood size: 7
-Data length:  198
-Hits:  89
-Hitrate pos: 0.4494949494949495
-Hits neg:  90
-Hitrate neg: 0.45454545454545453
-Hits avg:  83
-Hitrate avg: 0.41919191919191917
+Data length:  170
+Hits:  77
+Hitrate pos: 0.45294117647058824
+Hits neg:  78
+Hitrate neg: 0.4588235294117647
+Hits avg:  71
+Hitrate avg: 0.4176470588235294
 
 
 Neighbourhood size: 8
-Data length:  198
-Hits:  97
-Hitrate pos: 0.4898989898989899
-Hits neg:  89
-Hitrate neg: 0.4494949494949495
-Hits avg:  86
-Hitrate avg: 0.43434343434343436
+Data length:  170
+Hits:  84
+Hitrate pos: 0.49411764705882355
+Hits neg:  78
+Hitrate neg: 0.4588235294117647
+Hits avg:  75
+Hitrate avg: 0.4411764705882353
 
 
 Neighbourhood size: 9
-Data length:  198
-Hits:  93
-Hitrate pos: 0.4696969696969697
-Hits neg:  92
-Hitrate neg: 0.46464646464646464
-Hits avg:  92
-Hitrate avg: 0.46464646464646464
+Data length:  170
+Hits:  81
+Hitrate pos: 0.4764705882352941
+Hits neg:  81
+Hitrate neg: 0.4764705882352941
+Hits avg:  80
+Hitrate avg: 0.47058823529411764
 
 
 Neighbourhood size: 10
-Data length:  198
-Hits:  91
-Hitrate pos: 0.4595959595959596
-Hits neg:  91
-Hitrate neg: 0.4595959595959596
-Hits avg:  91
-Hitrate avg: 0.4595959595959596
+Data length:  170
+Hits:  79
+Hitrate pos: 0.4647058823529412
+Hits neg:  80
+Hitrate neg: 0.47058823529411764
+Hits avg:  79
+Hitrate avg: 0.4647058823529412
 
 
 Neighbourhood size: 11
-Data length:  198
-Hits:  92
-Hitrate pos: 0.46464646464646464
-Hits neg:  93
-Hitrate neg: 0.4696969696969697
-Hits avg:  90
-Hitrate avg: 0.45454545454545453
+Data length:  170
+Hits:  80
+Hitrate pos: 0.47058823529411764
+Hits neg:  82
+Hitrate neg: 0.4823529411764706
+Hits avg:  79
+Hitrate avg: 0.4647058823529412
 
 
 Neighbourhood size: 12
-Data length:  198
-Hits:  93
-Hitrate pos: 0.4696969696969697
-Hits neg:  85
-Hitrate neg: 0.4292929292929293
-Hits avg:  89
-Hitrate avg: 0.4494949494949495
+Data length:  170
+Hits:  81
+Hitrate pos: 0.4764705882352941
+Hits neg:  74
+Hitrate neg: 0.43529411764705883
+Hits avg:  78
+Hitrate avg: 0.4588235294117647
 
 
 Neighbourhood size: 13
-Data length:  198
-Hits:  89
-Hitrate pos: 0.4494949494949495
-Hits neg:  89
-Hitrate neg: 0.4494949494949495
-Hits avg:  88
-Hitrate avg: 0.4444444444444444
+Data length:  170
+Hits:  79
+Hitrate pos: 0.4647058823529412
+Hits neg:  78
+Hitrate neg: 0.4588235294117647
+Hits avg:  77
+Hitrate avg: 0.45294117647058824
 
 
 Neighbourhood size: 14
-Data length:  198
-Hits:  92
-Hitrate pos: 0.46464646464646464
-Hits neg:  92
-Hitrate neg: 0.46464646464646464
-Hits avg:  86
-Hitrate avg: 0.43434343434343436
+Data length:  170
+Hits:  80
+Hitrate pos: 0.47058823529411764
+Hits neg:  81
+Hitrate neg: 0.4764705882352941
+Hits avg:  75
+Hitrate avg: 0.4411764705882353
 
 
 Neighbourhood size: 15
-Data length:  198
-Hits:  91
-Hitrate pos: 0.4595959595959596
-Hits neg:  94
-Hitrate neg: 0.47474747474747475
-Hits avg:  88
-Hitrate avg: 0.4444444444444444
+Data length:  170
+Hits:  77
+Hitrate pos: 0.45294117647058824
+Hits neg:  82
+Hitrate neg: 0.4823529411764706
+Hits avg:  76
+Hitrate avg: 0.4470588235294118
 
 
 Neighbourhood size: 16
-Data length:  198
-Hits:  87
-Hitrate pos: 0.4393939393939394
-Hits neg:  91
-Hitrate neg: 0.4595959595959596
-Hits avg:  85
-Hitrate avg: 0.4292929292929293
+Data length:  170
+Hits:  74
+Hitrate pos: 0.43529411764705883
+Hits neg:  80
+Hitrate neg: 0.47058823529411764
+Hits avg:  74
+Hitrate avg: 0.43529411764705883
 
 
 Neighbourhood size: 17
-Data length:  198
-Hits:  93
-Hitrate pos: 0.4696969696969697
-Hits neg:  91
-Hitrate neg: 0.4595959595959596
-Hits avg:  86
-Hitrate avg: 0.43434343434343436
+Data length:  170
+Hits:  79
+Hitrate pos: 0.4647058823529412
+Hits neg:  80
+Hitrate neg: 0.47058823529411764
+Hits avg:  75
+Hitrate avg: 0.4411764705882353
 
 
 Neighbourhood size: 18
-Data length:  198
-Hits:  90
-Hitrate pos: 0.45454545454545453
-Hits neg:  90
-Hitrate neg: 0.45454545454545453
-Hits avg:  89
-Hitrate avg: 0.4494949494949495
+Data length:  170
+Hits:  79
+Hitrate pos: 0.4647058823529412
+Hits neg:  79
+Hitrate neg: 0.4647058823529412
+Hits avg:  78
+Hitrate avg: 0.4588235294117647
 
 
 Neighbourhood size: 19
-Data length:  198
-Hits:  88
-Hitrate pos: 0.4444444444444444
-Hits neg:  90
-Hitrate neg: 0.45454545454545453
-Hits avg:  87
-Hitrate avg: 0.4393939393939394
+Data length:  170
+Hits:  77
+Hitrate pos: 0.45294117647058824
+Hits neg:  79
+Hitrate neg: 0.4647058823529412
+Hits avg:  76
+Hitrate avg: 0.4470588235294118
 
 
 Neighbourhood size: 20
-Data length:  198
-Hits:  89
-Hitrate pos: 0.4494949494949495
-Hits neg:  86
-Hitrate neg: 0.43434343434343436
-Hits avg:  87
-Hitrate avg: 0.4393939393939394
+Data length:  170
+Hits:  77
+Hitrate pos: 0.45294117647058824
+Hits neg:  75
+Hitrate neg: 0.4411764705882353
+Hits avg:  76
+Hitrate avg: 0.4470588235294118
 
 
 Neighbourhood size: 21
-Data length:  198
-Hits:  93
-Hitrate pos: 0.4696969696969697
-Hits neg:  86
-Hitrate neg: 0.43434343434343436
-Hits avg:  88
-Hitrate avg: 0.4444444444444444
+Data length:  170
+Hits:  81
+Hitrate pos: 0.4764705882352941
+Hits neg:  75
+Hitrate neg: 0.4411764705882353
+Hits avg:  77
+Hitrate avg: 0.45294117647058824
 
 
 Neighbourhood size: 22
-Data length:  198
-Hits:  91
-Hitrate pos: 0.4595959595959596
-Hits neg:  87
-Hitrate neg: 0.4393939393939394
-Hits avg:  87
-Hitrate avg: 0.4393939393939394
+Data length:  170
+Hits:  78
+Hitrate pos: 0.4588235294117647
+Hits neg:  76
+Hitrate neg: 0.4470588235294118
+Hits avg:  76
+Hitrate avg: 0.4470588235294118
 
 
 Neighbourhood size: 23
-Data length:  198
-Hits:  92
-Hitrate pos: 0.46464646464646464
-Hits neg:  85
-Hitrate neg: 0.4292929292929293
-Hits avg:  86
-Hitrate avg: 0.43434343434343436
+Data length:  170
+Hits:  79
+Hitrate pos: 0.4647058823529412
+Hits neg:  74
+Hitrate neg: 0.43529411764705883
+Hits avg:  75
+Hitrate avg: 0.4411764705882353
 
 
 Neighbourhood size: 24
-Data length:  198
-Hits:  87
-Hitrate pos: 0.4393939393939394
-Hits neg:  89
-Hitrate neg: 0.4494949494949495
-Hits avg:  88
-Hitrate avg: 0.4444444444444444
+Data length:  170
+Hits:  76
+Hitrate pos: 0.4470588235294118
+Hits neg:  78
+Hitrate neg: 0.4588235294117647
+Hits avg:  77
+Hitrate avg: 0.45294117647058824
 
 
 Neighbourhood size: 25
-Data length:  198
-Hits:  87
-Hitrate pos: 0.4393939393939394
-Hits neg:  87
-Hitrate neg: 0.4393939393939394
-Hits avg:  87
-Hitrate avg: 0.4393939393939394
+Data length:  170
+Hits:  76
+Hitrate pos: 0.4470588235294118
+Hits neg:  76
+Hitrate neg: 0.4470588235294118
+Hits avg:  76
+Hitrate avg: 0.4470588235294118
 
 
 Neighbourhood size: 26
-Data length:  198
-Hits:  90
-Hitrate pos: 0.45454545454545453
-Hits neg:  88
-Hitrate neg: 0.4444444444444444
-Hits avg:  86
-Hitrate avg: 0.43434343434343436
+Data length:  170
+Hits:  79
+Hitrate pos: 0.4647058823529412
+Hits neg:  77
+Hitrate neg: 0.45294117647058824
+Hits avg:  75
+Hitrate avg: 0.4411764705882353
 
 
 Neighbourhood size: 27
-Data length:  198
-Hits:  88
-Hitrate pos: 0.4444444444444444
-Hits neg:  88
-Hitrate neg: 0.4444444444444444
-Hits avg:  91
-Hitrate avg: 0.4595959595959596
+Data length:  170
+Hits:  77
+Hitrate pos: 0.45294117647058824
+Hits neg:  77
+Hitrate neg: 0.45294117647058824
+Hits avg:  80
+Hitrate avg: 0.47058823529411764
 
 
 Neighbourhood size: 28
-Data length:  198
-Hits:  89
-Hitrate pos: 0.4494949494949495
-Hits neg:  88
-Hitrate neg: 0.4444444444444444
-Hits avg:  88
-Hitrate avg: 0.4444444444444444
+Data length:  170
+Hits:  78
+Hitrate pos: 0.4588235294117647
+Hits neg:  77
+Hitrate neg: 0.45294117647058824
+Hits avg:  77
+Hitrate avg: 0.45294117647058824
 
 
 Neighbourhood size: 29
-Data length:  198
-Hits:  88
-Hitrate pos: 0.4444444444444444
-Hits neg:  89
-Hitrate neg: 0.4494949494949495
-Hits avg:  89
-Hitrate avg: 0.4494949494949495
+Data length:  170
+Hits:  77
+Hitrate pos: 0.45294117647058824
+Hits neg:  78
+Hitrate neg: 0.4588235294117647
+Hits avg:  78
+Hitrate avg: 0.4588235294117647
 
 
-Max positive:  0.5252525252525253  At neighbourhood size: 3
-Max negative:  0.47474747474747475  At neighbourhood size: 15
-Max average:  0.46464646464646464  At neighbourhood size: 9
-
-Process finished with exit code 0
+Max positive:  0.5235294117647059  At neighbourhood size: 3
+Max negative:  0.4823529411764706  At neighbourhood size: 11
+Max average:  0.47058823529411764  At neighbourhood size: 9
