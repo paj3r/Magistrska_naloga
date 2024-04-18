@@ -5,6 +5,7 @@ import numpy as np
 import pandas_datareader.data as pdr
 import yfinance as yf
 from ts2vg import NaturalVG, HorizontalVG
+from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from heapq import nlargest
@@ -42,6 +43,54 @@ def generate_new_node_zhang(time_series_values, ahead=1):
 
     prediction = ((time_series_values[last_node] - time_series_values[max_sim_ix])/(last_node - max_sim_ix)
                   + time_series_values[last_node])
+
+    return prediction
+
+def generate_new_node_isomorphism_trend_linear(time_series_values, ahead=1):
+    graph = NaturalVG()
+    graph.build(time_series_values)
+
+    matrix = graph.as_networkx()
+
+    last_node = len(matrix.nodes)-1
+    num_of_edges = len(matrix.edges(last_node))
+    indexes = []
+    values = []
+    for node in matrix.nodes:
+        if len(matrix.edges(node)) == num_of_edges:
+            indexes.append(node)
+            values.append(time_series_values[node])
+    indexes = np.array(indexes).reshape((-1, 1))
+    values = np.array(values)
+    model = LinearRegression()
+    model.fit(indexes, values)
+    prediction = model.predict(np.array([last_node+ahead]).reshape(-1, 1))
+
+    return prediction[0]
+
+def generate_new_node_isomorphism(time_series_values, positive=True):
+    if not positive:
+        data = [-x for x in time_series_values]
+    else:
+        data = time_series_values
+    graph = NaturalVG()
+    graph.build(data)
+
+    matrix = graph.as_networkx()
+
+    last_node = len(matrix.nodes)-1
+    # We add +1, to ensure continuation.
+    num_of_edges = len(matrix.edges(last_node)) + 1
+    values_ahead_difference = []
+    for i in range(num_of_edges, 0, -1):
+        for node in matrix.nodes:
+            if len(matrix.edges(node)) == i and node != last_node:
+                values_ahead_difference.append(time_series_values[node+1] - time_series_values[node])
+        if len(values_ahead_difference) != 0:
+            break
+
+
+    prediction = time_series_values[last_node] + (sum(values_ahead_difference)/len(values_ahead_difference))
 
     return prediction
 
