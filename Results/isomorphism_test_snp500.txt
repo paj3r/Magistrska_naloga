@@ -1,25 +1,25 @@
 C:\Users\Pajer\Documents\Magistrska_naloga\Scripts\python.exe C:\Users\Pajer\Documents\GitHub\Magistrska_naloga\main.py
 Data length:  170
-Hits:  89
-Hitrate pos: 0.5235294117647059
+Hits:  84
+Hitrate pos: 0.49411764705882355
 Hits neg:  76
 Hitrate neg: 0.4470588235294118
-Hits avg:  88
-Hitrate avg: 0.5176470588235295
+Hits avg:  85
+Hitrate avg: 0.5
 
 
-Positive MAE:  201.47486801575937
-Negative MAE:  195.95405675721207
-Average MAE:  198.43767848672792
+Positive MAE:  202.248297443224
+Negative MAE:  193.38659919286914
+Average MAE:  197.6146088668364
 
 
-Positive MSE: 52560.833172944316
-Negative MSE: 48138.06694741366
-Average MSE: 50137.886894776544
+Positive MSE: 53308.088378501576
+Negative MSE: 46477.391668137636
+Average MSE: 49568.38273769125
 
 
-Positive MAPE: 0.044819233170928556
-Negative MAPE: 0.04365670957483947
-Average MAPE: 0.04417513812208654
+Positive MAPE: 0.04495409822467147
+Negative MAPE: 0.0430889329285755
+Average MAPE: 0.043976169757942406
 
 Process finished with exit code 0

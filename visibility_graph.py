@@ -10,6 +10,13 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from heapq import nlargest
 
+def to_distance_weighted_graph(graph, time_series_data):
+    for u, v in graph.edges:
+        if v > u:
+            graph[u][v]['weight'] = time_series_data[v] - time_series_data[u]
+        else:
+            graph[u][v]['weight'] =time_series_data[u] - time_series_data[v]
+
 def neighbourhood_simmilarity(matrix, neighbourhood, target_node):
     sum = 0
     if len(neighbourhood) == 0:
@@ -53,20 +60,31 @@ def generate_new_node_isomorphism_trend_linear(time_series_values, ahead=1):
     matrix = graph.as_networkx()
 
     last_node = len(matrix.nodes)-1
+    # We add +1, to ensure continuation.
     num_of_edges = len(matrix.edges(last_node))
+    if num_of_edges == 1:
+        num_of_edges = 2
     indexes = []
     values = []
-    for node in matrix.nodes:
-        if len(matrix.edges(node)) == num_of_edges:
-            indexes.append(node)
-            values.append(time_series_values[node])
+    values_ahead_difference = []
+    for i in range(num_of_edges, 0, -1):
+        for node in matrix.nodes:
+            if len(matrix.edges(node)) == i and node != last_node:
+                indexes.append(node)
+                values.append(time_series_values[node])
+                values_ahead_difference.append(time_series_values[node+1] - time_series_values[node])
+            elif len(matrix.edges(node)) == num_of_edges:
+                indexes.append(node)
+                values.append(time_series_values[node])
+        if len(values_ahead_difference) != 0:
+            break
+
     indexes = np.array(indexes).reshape((-1, 1))
     values = np.array(values)
     model = LinearRegression()
     model.fit(indexes, values)
-    prediction = model.predict(np.array([last_node+ahead]).reshape(-1, 1))
 
-    return prediction[0]
+    return time_series_values[last_node] + (model.coef_ + (sum(values_ahead_difference)/len(values_ahead_difference))) / 2
 
 def generate_new_node_isomorphism(time_series_values, positive=True):
     if not positive:
@@ -80,7 +98,9 @@ def generate_new_node_isomorphism(time_series_values, positive=True):
 
     last_node = len(matrix.nodes)-1
     # We add +1, to ensure continuation.
-    num_of_edges = len(matrix.edges(last_node)) + 1
+    num_of_edges = len(matrix.edges(last_node))
+    if num_of_edges == 1:
+        num_of_edges = 2
     values_ahead_difference = []
     for i in range(num_of_edges, 0, -1):
         for node in matrix.nodes:
@@ -93,6 +113,51 @@ def generate_new_node_isomorphism(time_series_values, positive=True):
     prediction = time_series_values[last_node] + (sum(values_ahead_difference)/len(values_ahead_difference))
 
     return prediction
+
+def generate_new_node_max_clique(time_series_values):
+    graph = NaturalVG()
+    graph.build(time_series_values)
+
+    matrix = graph.as_networkx()
+
+    last_node = len(matrix.nodes) - 1
+
+    all_cliques = nx.find_cliques(matrix, [last_node])
+
+    max_clique = []
+    for clique in all_cliques:
+        if len(clique) > len(max_clique):
+            max_clique = clique
+    values_ahead_difference = []
+    for node in max_clique:
+        if node != last_node:
+            values_ahead_difference.append(time_series_values[node+1] - time_series_values[node])
+
+    return time_series_values[last_node] + (sum(values_ahead_difference)/len(values_ahead_difference))
+
+
+def generate_new_node_colouring(time_series_values):
+    graph = NaturalVG()
+    graph.build(time_series_values)
+
+    matrix = graph.as_networkx()
+
+    last_node = len(matrix.nodes) - 1
+
+    colouring = nx.greedy_color(matrix)
+
+    target_colour = colouring[last_node]
+    same_color_nodes = (key for key, value in colouring.items() if value==target_colour)
+    values_ahead_difference = []
+    for node in same_color_nodes:
+        if node != last_node:
+            values_ahead_difference.append(time_series_values[node + 1] - time_series_values[node])
+
+    if len(values_ahead_difference) == 0:
+        return 2*time_series_values[last_node] - time_series_values[last_node-1]
+
+    return time_series_values[last_node] + (sum(values_ahead_difference) / len(values_ahead_difference))
+
 
 def generate_new_node_zhang_extended(time_series_values, length):
     # Extended method of the proposed method by taking into account multiple nodes.

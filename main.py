@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from heapq import nlargest
 import matplotlib.patches as patches
 from sklearn.metrics import mean_absolute_error as mae, mean_squared_error as mse, mean_absolute_percentage_error as mape
-from visibility_graph import generate_new_node_isomorphism_trend_linear, generate_new_node_isomorphism
+from visibility_graph import generate_new_node_colouring, generate_new_node_isomorphism_trend_linear, generate_new_node_isomorphism, to_distance_weighted_graph, generate_new_node_max_clique
 
 from ts_to_vg import plot_ts_visibility  # Plotting function for visibility graph
 
@@ -55,7 +55,7 @@ def neighbourhood_simmilarity(matrix, neighbourhood, target_node):
     if len(neighbourhood) == 0:
         return 0
     node_pairs = [(target_node, x) for x in neighbourhood.nodes]
-    preds = nx.jaccard_coefficient(matrix, node_pairs)
+    preds = nx.adamic_adar_index(matrix, node_pairs)
     for u, v, p in preds:
         sum += p
     return sum / len(neighbourhood)
@@ -69,9 +69,9 @@ def generate_new_node_zhang(time_series_values, matrix:nx.classes.graph.Graph, a
     for node in matrix.nodes:
         if node == last_node:
             break
-        preds = nx.jaccard_coefficient(matrix, [(node, last_node)])
-        for u, v, p in preds:
-            temp_sim = p
+        #preds = nx.adamic_adar_index(matrix, [(node, last_node)])
+        preds = nx.google_matrix(matrix)
+        temp_sim = preds[last_node][node]
         if temp_sim > max_sim:
             max_sim = temp_sim
             max_sim_ix = node
@@ -88,7 +88,7 @@ def generate_new_node_zhang_extended(time_series_values, matrix:nx.classes.graph
     for node in matrix.nodes:
         if node == last_node:
             break
-        preds = nx.jaccard_coefficient(matrix, [(node, last_node)])
+        preds = nx.adamic_adar_index(matrix, [(node, last_node)])
         for u, v, p in preds:
             temp_sim = p
         sims[node] = temp_sim
@@ -390,6 +390,8 @@ def test_zhang(dat):
     neg_graph.build(neg_dat)
     network = graph.as_networkx()
     neg_network = neg_graph.as_networkx()
+    to_distance_weighted_graph(network, dat)
+    to_distance_weighted_graph(neg_network, neg_dat)
 
     hits = 0
     data = 0
@@ -445,6 +447,136 @@ def test_zhang(dat):
     avg_predictions = (predictions + neg_predictions) / 2
     print_statistics(dat, predictions, neg_predictions, avg_predictions)
 
+
+def test_max_clique(dat):
+    neg_dat = [-x for x in dat]
+    start_offset = 30
+    graph = NaturalVG()
+    graph.build(dat)
+    neg_graph = NaturalVG()
+    neg_graph.build(neg_dat)
+    network = graph.as_networkx()
+    neg_network = neg_graph.as_networkx()
+    to_distance_weighted_graph(network, dat)
+    to_distance_weighted_graph(neg_network, neg_dat)
+
+    hits = 0
+    data = 0
+    preds = []
+    predictions = np.empty(start_offset)
+    predictions[:] = np.nan
+    neg_predictions = np.empty(start_offset)
+    neg_predictions[:] = np.nan
+    # 30 days of learning period.
+    for i in range(start_offset, len(dat)):
+        rolling_dat = dat[:i]
+        rolling_dat_neg = [-x for x in rolling_dat]
+        new_value = generate_new_node_max_clique(rolling_dat)
+        new_value_neg = -generate_new_node_max_clique(rolling_dat_neg)
+        predictions = np.append(predictions, new_value)
+        neg_predictions = np.append(neg_predictions, new_value_neg)
+
+    # Check positive hitrate
+    hits_pos = 0
+    data = 0
+    for i in range(start_offset, len(dat)):
+        if dat[i - 1] < predictions[i] and dat[i - 1] < dat[i]:
+            hits_pos += 1
+        elif dat[i - 1] > predictions[i] and dat[i - 1] > dat[i]:
+            hits_pos += 1
+        data += 1
+
+    hits_neg = 0
+    # Check negative hitrate
+    for i in range(start_offset, len(dat)):
+        if dat[i - 1] < neg_predictions[i] and dat[i - 1] < dat[i]:
+            hits_neg += 1
+        elif dat[i - 1] > neg_predictions[i] and dat[i - 1] > dat[i]:
+            hits_neg += 1
+
+    hits_avg = 0
+    # Check negative hitrate
+    for i in range(start_offset, len(dat)):
+        val = (neg_predictions[i] + predictions[i]) / 2
+        if dat[i - 1] < val and dat[i - 1] < dat[i]:
+            hits_avg += 1
+        elif dat[i - 1] > val and dat[i - 1] > dat[i]:
+            hits_avg += 1
+
+    print("Data length: ", data)
+    print("Hits: ", hits_pos)
+    print("Hitrate pos: " + str(hits_pos / data))
+    print("Hits neg: ", hits_neg)
+    print("Hitrate neg: " + str(hits_neg / data))
+    print("Hits avg: ", hits_avg)
+    print("Hitrate avg: " + str(hits_avg / data))
+    avg_predictions = (predictions + neg_predictions) / 2
+    print_statistics(dat, predictions, neg_predictions, avg_predictions)
+
+def test_colouring(dat):
+    neg_dat = [-x for x in dat]
+    start_offset = 30
+    graph = NaturalVG()
+    graph.build(dat)
+    neg_graph = NaturalVG()
+    neg_graph.build(neg_dat)
+    network = graph.as_networkx()
+    neg_network = neg_graph.as_networkx()
+    to_distance_weighted_graph(network, dat)
+    to_distance_weighted_graph(neg_network, neg_dat)
+
+    hits = 0
+    data = 0
+    preds = []
+    predictions = np.empty(start_offset)
+    predictions[:] = np.nan
+    neg_predictions = np.empty(start_offset)
+    neg_predictions[:] = np.nan
+    # 30 days of learning period.
+    for i in range(start_offset, len(dat)):
+        rolling_dat = dat[:i]
+        rolling_dat_neg = [-x for x in rolling_dat]
+        new_value = generate_new_node_colouring(rolling_dat)
+        new_value_neg = -generate_new_node_colouring(rolling_dat_neg)
+        predictions = np.append(predictions, new_value)
+        neg_predictions = np.append(neg_predictions, new_value_neg)
+
+    # Check positive hitrate
+    hits_pos = 0
+    data = 0
+    for i in range(start_offset, len(dat)):
+        if dat[i - 1] < predictions[i] and dat[i - 1] < dat[i]:
+            hits_pos += 1
+        elif dat[i - 1] > predictions[i] and dat[i - 1] > dat[i]:
+            hits_pos += 1
+        data += 1
+
+    hits_neg = 0
+    # Check negative hitrate
+    for i in range(start_offset, len(dat)):
+        if dat[i - 1] < neg_predictions[i] and dat[i - 1] < dat[i]:
+            hits_neg += 1
+        elif dat[i - 1] > neg_predictions[i] and dat[i - 1] > dat[i]:
+            hits_neg += 1
+
+    hits_avg = 0
+    # Check negative hitrate
+    for i in range(start_offset, len(dat)):
+        val = (neg_predictions[i] + predictions[i]) / 2
+        if dat[i - 1] < val and dat[i - 1] < dat[i]:
+            hits_avg += 1
+        elif dat[i - 1] > val and dat[i - 1] > dat[i]:
+            hits_avg += 1
+
+    print("Data length: ", data)
+    print("Hits: ", hits_pos)
+    print("Hitrate pos: " + str(hits_pos / data))
+    print("Hits neg: ", hits_neg)
+    print("Hitrate neg: " + str(hits_neg / data))
+    print("Hits avg: ", hits_avg)
+    print("Hitrate avg: " + str(hits_avg / data))
+    avg_predictions = (predictions + neg_predictions) / 2
+    print_statistics(dat, predictions, neg_predictions, avg_predictions)
 
 
 
@@ -540,8 +672,8 @@ def test_zhang_extended(dat):
 
 if __name__ == '__main__':
     yf.pdr_override()
-    data = np.loadtxt("TestData/snp500.csv")
-    test_isomorphism_trend(data)
+    data = np.loadtxt("TestData/eurusd.csv")
+    test_zhang(data)
     # dat = [1.0, 0.5, 0.3, 0.7, 1.0, 0.5, 0.3, 0.8, 1.0, 0.4]
 
 

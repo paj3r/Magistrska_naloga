@@ -1,0 +1,26 @@
+C:\Users\Pajer\Documents\Magistrska_naloga\Scripts\python.exe "C:/Program Files/JetBrains/PyCharm 2023.3.3/plugins/python/helpers/pydev/pydevd.py" --multiprocess --qt-support=auto --client 127.0.0.1 --port 61797 --file C:\Users\Pajer\Documents\GitHub\Magistrska_naloga\main.py
+Connected to pydev debugger (build 233.13763.11)
+Data length:  170
+Hits:  86
+Hitrate pos: 0.5058823529411764
+Hits neg:  83
+Hitrate neg: 0.48823529411764705
+Hits avg:  84
+Hitrate avg: 0.49411764705882355
+
+
+Positive MAE:  199.58045125345893
+Negative MAE:  200.33806508749058
+Average MAE:  199.90033267644895
+
+
+Positive MSE: 51454.52224522357
+Negative MSE: 51575.012488353525
+Average MSE: 51486.41865607654
+
+
+Positive MAPE: 0.044434947127337705
+Negative MAPE: 0.04458970813947593
+Average MAPE: 0.04449933376754008
+
+Process finished with exit code 0

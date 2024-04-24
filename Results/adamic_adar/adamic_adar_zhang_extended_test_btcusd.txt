@@ -1,0 +1,311 @@
+C:\Users\Pajer\Documents\Magistrska_naloga\Scripts\python.exe C:\Users\Pajer\Documents\GitHub\Magistrska_naloga\main.py
+Length size: 1
+Data length:  261
+Hits:  137
+Hitrate pos: 0.524904214559387
+Hits neg:  120
+Hitrate neg: 0.45977011494252873
+Hits avg:  120
+Hitrate avg: 0.45977011494252873
+
+
+Length size: 2
+Data length:  261
+Hits:  133
+Hitrate pos: 0.5095785440613027
+Hits neg:  121
+Hitrate neg: 0.46360153256704983
+Hits avg:  119
+Hitrate avg: 0.4559386973180077
+
+
+Length size: 3
+Data length:  261
+Hits:  134
+Hitrate pos: 0.5134099616858238
+Hits neg:  123
+Hitrate neg: 0.47126436781609193
+Hits avg:  122
+Hitrate avg: 0.4674329501915709
+
+
+Length size: 4
+Data length:  261
+Hits:  135
+Hitrate pos: 0.5172413793103449
+Hits neg:  124
+Hitrate neg: 0.47509578544061304
+Hits avg:  121
+Hitrate avg: 0.46360153256704983
+
+
+Length size: 5
+Data length:  261
+Hits:  131
+Hitrate pos: 0.5019157088122606
+Hits neg:  118
+Hitrate neg: 0.4521072796934866
+Hits avg:  119
+Hitrate avg: 0.4559386973180077
+
+
+Length size: 6
+Data length:  261
+Hits:  130
+Hitrate pos: 0.49808429118773945
+Hits neg:  120
+Hitrate neg: 0.45977011494252873
+Hits avg:  118
+Hitrate avg: 0.4521072796934866
+
+
+Length size: 7
+Data length:  261
+Hits:  128
+Hitrate pos: 0.4904214559386973
+Hits neg:  121
+Hitrate neg: 0.46360153256704983
+Hits avg:  117
+Hitrate avg: 0.4482758620689655
+
+
+Length size: 8
+Data length:  261
+Hits:  128
+Hitrate pos: 0.4904214559386973
+Hits neg:  122
+Hitrate neg: 0.4674329501915709
+Hits avg:  119
+Hitrate avg: 0.4559386973180077
+
+
+Length size: 9
+Data length:  261
+Hits:  128
+Hitrate pos: 0.4904214559386973
+Hits neg:  119
+Hitrate neg: 0.4559386973180077
+Hits avg:  118
+Hitrate avg: 0.4521072796934866
+
+
+Length size: 10
+Data length:  261
+Hits:  127
+Hitrate pos: 0.48659003831417624
+Hits neg:  118
+Hitrate neg: 0.4521072796934866
+Hits avg:  120
+Hitrate avg: 0.45977011494252873
+
+
+Length size: 11
+Data length:  261
+Hits:  127
+Hitrate pos: 0.48659003831417624
+Hits neg:  118
+Hitrate neg: 0.4521072796934866
+Hits avg:  120
+Hitrate avg: 0.45977011494252873
+
+
+Length size: 12
+Data length:  261
+Hits:  127
+Hitrate pos: 0.48659003831417624
+Hits neg:  121
+Hitrate neg: 0.46360153256704983
+Hits avg:  121
+Hitrate avg: 0.46360153256704983
+
+
+Length size: 13
+Data length:  261
+Hits:  127
+Hitrate pos: 0.48659003831417624
+Hits neg:  120
+Hitrate neg: 0.45977011494252873
+Hits avg:  121
+Hitrate avg: 0.46360153256704983
+
+
+Length size: 14
+Data length:  261
+Hits:  127
+Hitrate pos: 0.48659003831417624
+Hits neg:  121
+Hitrate neg: 0.46360153256704983
+Hits avg:  122
+Hitrate avg: 0.4674329501915709
+
+
+Length size: 15
+Data length:  261
+Hits:  127
+Hitrate pos: 0.48659003831417624
+Hits neg:  120
+Hitrate neg: 0.45977011494252873
+Hits avg:  122
+Hitrate avg: 0.4674329501915709
+
+
+Length size: 16
+Data length:  261
+Hits:  126
+Hitrate pos: 0.4827586206896552
+Hits neg:  120
+Hitrate neg: 0.45977011494252873
+Hits avg:  122
+Hitrate avg: 0.4674329501915709
+
+
+Length size: 17
+Data length:  261
+Hits:  126
+Hitrate pos: 0.4827586206896552
+Hits neg:  121
+Hitrate neg: 0.46360153256704983
+Hits avg:  124
+Hitrate avg: 0.47509578544061304
+
+
+Length size: 18
+Data length:  261
+Hits:  126
+Hitrate pos: 0.4827586206896552
+Hits neg:  121
+Hitrate neg: 0.46360153256704983
+Hits avg:  124
+Hitrate avg: 0.47509578544061304
+
+
+Length size: 19
+Data length:  261
+Hits:  126
+Hitrate pos: 0.4827586206896552
+Hits neg:  119
+Hitrate neg: 0.4559386973180077
+Hits avg:  125
+Hitrate avg: 0.4789272030651341
+
+
+Length size: 20
+Data length:  261
+Hits:  125
+Hitrate pos: 0.4789272030651341
+Hits neg:  119
+Hitrate neg: 0.4559386973180077
+Hits avg:  124
+Hitrate avg: 0.47509578544061304
+
+
+Length size: 21
+Data length:  261
+Hits:  126
+Hitrate pos: 0.4827586206896552
+Hits neg:  120
+Hitrate neg: 0.45977011494252873
+Hits avg:  124
+Hitrate avg: 0.47509578544061304
+
+
+Length size: 22
+Data length:  261
+Hits:  125
+Hitrate pos: 0.4789272030651341
+Hits neg:  120
+Hitrate neg: 0.45977011494252873
+Hits avg:  123
+Hitrate avg: 0.47126436781609193
+
+
+Length size: 23
+Data length:  261
+Hits:  125
+Hitrate pos: 0.4789272030651341
+Hits neg:  121
+Hitrate neg: 0.46360153256704983
+Hits avg:  123
+Hitrate avg: 0.47126436781609193
+
+
+Length size: 24
+Data length:  261
+Hits:  125
+Hitrate pos: 0.4789272030651341
+Hits neg:  121
+Hitrate neg: 0.46360153256704983
+Hits avg:  123
+Hitrate avg: 0.47126436781609193
+
+
+Length size: 25
+Data length:  261
+Hits:  126
+Hitrate pos: 0.4827586206896552
+Hits neg:  120
+Hitrate neg: 0.45977011494252873
+Hits avg:  123
+Hitrate avg: 0.47126436781609193
+
+
+Length size: 26
+Data length:  261
+Hits:  126
+Hitrate pos: 0.4827586206896552
+Hits neg:  120
+Hitrate neg: 0.45977011494252873
+Hits avg:  123
+Hitrate avg: 0.47126436781609193
+
+
+Length size: 27
+Data length:  261
+Hits:  126
+Hitrate pos: 0.4827586206896552
+Hits neg:  119
+Hitrate neg: 0.4559386973180077
+Hits avg:  123
+Hitrate avg: 0.47126436781609193
+
+
+Length size: 28
+Data length:  261
+Hits:  125
+Hitrate pos: 0.4789272030651341
+Hits neg:  119
+Hitrate neg: 0.4559386973180077
+Hits avg:  124
+Hitrate avg: 0.47509578544061304
+
+
+Length size: 29
+Data length:  261
+Hits:  125
+Hitrate pos: 0.4789272030651341
+Hits neg:  118
+Hitrate neg: 0.4521072796934866
+Hits avg:  124
+Hitrate avg: 0.47509578544061304
+
+
+Max positive:  0.524904214559387  At neighbourhood size: 1
+Max negative:  0.47509578544061304  At neighbourhood size: 4
+Max average:  0.4789272030651341  At neighbourhood size: 19
+
+
+Positive MAE:  3648.8448803270485
+Negative MAE:  3615.626883812473
+Average MAE:  3608.3771042091166
+
+
+Positive MSE: 84440913.71807382
+Negative MSE: 84325780.63786833
+Average MSE: 84313081.9579985
+
+
+Positive MAPE: 0.12060920593419344
+Negative MAPE: 0.1196157950694691
+Average MAPE: 0.11948249994155073
+
+Process finished with exit code 0
