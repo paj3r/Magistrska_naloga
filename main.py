@@ -55,9 +55,12 @@ def neighbourhood_simmilarity(matrix, neighbourhood, target_node):
     if len(neighbourhood) == 0:
         return 0
     node_pairs = [(target_node, x) for x in neighbourhood.nodes]
-    preds = nx.adamic_adar_index(matrix, node_pairs)
-    for u, v, p in preds:
-        sum += p
+    #preds = nx.adamic_adar_index(matrix, node_pairs)
+    #for u, v, p in preds:
+    #    sum += p
+    preds = nx.google_matrix(matrix)
+    for pair in node_pairs:
+        sum += preds[pair[0]][pair[1]]
     return sum / len(neighbourhood)
 
 
@@ -88,9 +91,8 @@ def generate_new_node_zhang_extended(time_series_values, matrix:nx.classes.graph
     for node in matrix.nodes:
         if node == last_node:
             break
-        preds = nx.adamic_adar_index(matrix, [(node, last_node)])
-        for u, v, p in preds:
-            temp_sim = p
+        preds = nx.google_matrix(matrix)
+        temp_sim = preds[last_node][node]
         sims[node] = temp_sim
     n_sims = nlargest(length, sims)
     n_sims_ix = nlargest(length, range(len(sims)), sims.__getitem__)
@@ -673,7 +675,7 @@ def test_zhang_extended(dat):
 if __name__ == '__main__':
     yf.pdr_override()
     data = np.loadtxt("TestData/eurusd.csv")
-    test_zhang(data)
+    test_zhang_extended(data)
     # dat = [1.0, 0.5, 0.3, 0.7, 1.0, 0.5, 0.3, 0.8, 1.0, 0.4]
 
 
