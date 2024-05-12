@@ -81,6 +81,8 @@ def generate_new_node_isomorphism_trend_linear(time_series_values, ahead=1):
 
     indexes = np.array(indexes).reshape((-1, 1))
     values = np.array(values)
+    if len(indexes) == 0 or len(values) == 0 or len(values_ahead_difference) == 0:
+        return time_series_values[last_node]
     model = LinearRegression()
     model.fit(indexes, values)
 
@@ -108,11 +110,40 @@ def generate_new_node_isomorphism(time_series_values, positive=True):
                 values_ahead_difference.append(time_series_values[node+1] - time_series_values[node])
         if len(values_ahead_difference) != 0:
             break
+    if len(values_ahead_difference) == 0:
+        return time_series_values[last_node]
 
 
     prediction = time_series_values[last_node] + (sum(values_ahead_difference)/len(values_ahead_difference))
 
     return prediction
+
+def generate_node_minimal_weighted_distance(time_series_values):
+    graph = NaturalVG()
+    graph.build(time_series_values)
+    matrix = graph.as_networkx()
+    to_distance_weighted_graph(matrix, time_series_values)
+
+    last_node = len(matrix.nodes)-1
+    last_node_edges = [(u, v) for u, v in list(matrix.edges(last_node)) if u > v]
+    last_node_weights_sum = sum(matrix.get_edge_data(u, v)['weight']/len(last_node_edges) for u, v in last_node_edges)
+    # Gledamo samo node za nazaj za primerjavo podobnosi.
+    last_dist = np.inf
+    closest_node = 0
+    for node in matrix.nodes:
+        if node == last_node:
+            continue
+        node_edges = [(u, v) for u, v in list(matrix.edges(node)) if u > v]
+        node_weights_sum = sum(
+            matrix.get_edge_data(u, v)['weight'] / len(node_edges) for u, v in node_edges)
+        if node_weights_sum == 0:
+            continue
+        if last_dist > abs(node_weights_sum-last_node_weights_sum):
+            closest_node = node
+            last_dist = abs(node_weights_sum-last_node_weights_sum)
+
+    return time_series_values[last_node] + (time_series_values[closest_node+1] - time_series_values[closest_node])
+
 
 def generate_new_node_max_clique(time_series_values):
     graph = NaturalVG()

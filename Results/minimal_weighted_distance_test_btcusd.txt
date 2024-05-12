@@ -1,0 +1,25 @@
+C:\Users\ivopa\OneDrive\Dokumente\GitHub\Magistrska_naloga\.venv\Scripts\python.exe C:\Users\ivopa\OneDrive\Dokumente\GitHub\Magistrska_naloga\main.py
+Data length:  261
+Hits:  128
+Hitrate pos: 0.4904214559386973
+Hits neg:  133
+Hitrate neg: 0.5095785440613027
+Hits avg:  137
+Hitrate avg: 0.524904214559387
+
+
+Positive MAE:  5263.104046934866
+Negative MAE:  5180.993931094348
+Average MAE:  5213.3322819384575
+
+
+Positive MSE: 57210928.561405346
+Negative MSE: 56919083.697474234
+Average MSE: 56782544.158157624
+
+
+Positive MAPE: 0.1470687495663438
+Negative MAPE: 0.14374827685753053
+Average MAPE: 0.14514236885026638
+
+Process finished with exit code 0
