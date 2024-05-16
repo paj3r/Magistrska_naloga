@@ -28,8 +28,8 @@ class AmaStrategy(Strategy):
     # Define the two MA lengths, for the AMA' calculation.
     # Used for later optimisation of these values.
 
-    short_length = 10
-    far_length = 20
+    short_length = 5
+    far_length = 10
 
     def init(self):
         # Precompute the AMA' values.
@@ -40,16 +40,14 @@ class AmaStrategy(Strategy):
     def next(self):
         # If the price is larger than the calculated AMA', then send a buy signal, otherwise close.
         if crossover(self.data.Close, self.daily_ama):
-            self.position.close()
             self.buy()
-
-        if crossover(self.daily_ama, self.data.Close):
-            self.position.close()
+        elif crossover(self.daily_ama, self.data.Close):
             self.sell()
 
 
 
-bt = Backtest(EURUSD, AmaStrategy, cash=10_000)
+bt = Backtest(GOOG, AmaStrategy, cash=10000, commission=.002,
+              exclusive_orders=True)
 # stats = bt.optimize(
 #     short_length=range(5, 20, 5),
 #     far_length=range(10, 100, 10),
