@@ -4,6 +4,7 @@ import os
 import networkx as nx
 import numpy as np
 import pandas_datareader.data as pdr
+import pandas as pd
 import yfinance as yf
 from ts2vg import NaturalVG, HorizontalVG
 import matplotlib.pyplot as plt
@@ -15,13 +16,93 @@ from ts_to_vg import plot_ts_visibility  # Plotting function for visibility grap
 
 
 def print_statistics(actual, positive, negative, average, output, test_name):
-    plt.plot(actual, label="Original data")
-    plt.plot(positive, label="Positive predictions", alpha=0.3)
-    plt.plot(negative, label="Negative predictions", alpha=0.3)
-    plt.plot(average, label="Average predictions", alpha=0.3)
+    countnan = 0
+    for value in positive:
+        if np.isnan(value):
+            countnan += 1
+        else:
+            break
+    window_size = 10
+    positive_plot = positive[countnan:] - actual[countnan:]
+    negative_plot = negative[countnan:] - actual[countnan:]
+    average_plot = average[countnan:] - actual[countnan:]
+    positive_plot_cumsum = np.cumsum(positive_plot)
+    negative_plot_cumsum = np.cumsum(negative_plot)
+    average_plot_cumsum = np.cumsum(average_plot)
+    pos_plot_averages = []
+    neg_plot_averages = []
+    pos_plot_max = []
+    neg_plot_max = []
+    pos_plot_min = []
+    neg_plot_min = []
+    for i in range(0, len(positive_plot), window_size):
+        max = -np.inf
+        min = np.inf
+        avg = 0
+        for j in range(0, window_size):
+            if i+j >= len(positive_plot):
+                break
+            temp_value = positive_plot[i+j]
+            if temp_value > max:
+                max = temp_value
+            if temp_value < min:
+                min = temp_value
+            avg += temp_value
+        avg = avg / window_size
+        pos_plot_averages.append(avg)
+        pos_plot_max.append(max)
+        pos_plot_min.append(min)
+    for i in range(0, len(negative_plot), window_size):
+        max = -np.inf
+        min = np.inf
+        avg = 0
+        for j in range(0, window_size):
+            if i+j >= len(negative_plot):
+                break
+            temp_value = negative_plot[i+j]
+            if temp_value > max:
+                max = temp_value
+            if temp_value < min:
+                min = temp_value
+            avg += temp_value
+        avg = avg / window_size
+        neg_plot_averages.append(avg)
+        neg_plot_max.append(max)
+        neg_plot_min.append(min)
+    pos_minmax = [pos_plot_min, pos_plot_max]
+    neg_minmax = [neg_plot_min, neg_plot_max]
+    plt.plot(pos_plot_averages, label="Positive predictions", alpha=0.8, color="green", linewidth=0.5)
+    plt.plot(pos_plot_max, label="Positive predictions max", alpha=0.8, color="limegreen", linewidth=0.5)
+    plt.plot(pos_plot_min, label="Positive predictions min", alpha=0.8, color="limegreen", linewidth=0.5)
+    # plt.plot()
+    # plt.legend()
+    # plt.title(test_name)
+    # plt.savefig(f"./Results/Pictures/{test_name}_positive.svg", format='svg', dpi=300)
+    plt.plot(neg_plot_averages, label="Negative predictions", alpha=0.8, color="red", linewidth=0.5)
+    plt.plot(neg_plot_max, label="Negative predictions max", alpha=0.8, color="lightcoral", linewidth=0.5)
+    plt.plot(neg_plot_min, label="Negative predictions min", alpha=0.8, color="lightcoral", linewidth=0.5)
+    #plt.plot(average_plot, label="Average predictions", alpha=0.5, linewidth=0.25)
+    plt.plot()
     plt.legend()
     plt.title(test_name)
     plt.savefig(f"./Results/Pictures/{test_name}.svg", format='svg', dpi=300)
+    plt.show()
+    plt.plot(positive_plot_cumsum, label="Positive cumulative predictions", alpha=0.7)
+    plt.plot(negative_plot_cumsum, label="Negative cumulative predictions", alpha=0.7)
+    plt.plot(average_plot_cumsum, label="Average cumulative predictions", alpha=0.7)
+    plt.plot()
+    plt.legend()
+    plt.title(test_name)
+    plt.savefig(f"./Results/Pictures/{test_name}_cumulative.svg", format='svg', dpi=300)
+    plt.show()
+    plt.plot(positive[countnan:], label="Positive predictions", alpha=0.7, linewidth=0.5)
+    plt.plot(negative[countnan:], label="Negative predictions", alpha=0.7, linewidth=0.5)
+    plt.plot(average[countnan:], label="Average predictions", alpha=0.7, linewidth=0.5)
+    plt.plot(actual[countnan:], label="Actual values", alpha=0.7, linewidth=0.5)
+    plt.plot()
+    plt.legend()
+    plt.title(test_name)
+    plt.savefig(f"./Results/Pictures/{test_name}_predictions.svg", format='svg', dpi=300)
     plt.show()
     # remove nan.
     positive = positive[~np.isnan(positive)]
@@ -710,9 +791,6 @@ def test_generator_function(generator_function, dat, filename_prefix):
     neg_dat = [-x for x in dat]
     start_offset = 30
 
-    hits = 0
-    data = 0
-    preds = []
     predictions = np.empty(start_offset)
     predictions[:] = np.nan
     neg_predictions = np.empty(start_offset)
@@ -763,16 +841,24 @@ def test_generator_function(generator_function, dat, filename_prefix):
     avg_predictions = (predictions + neg_predictions) / 2
     output = print_statistics(dat, predictions, neg_predictions, avg_predictions, output, filename_prefix)
 
-    f = open(f"./Results/{filename_prefix}.txt", "w")
+    if not os.path.exists(f"./Results/{filename_prefix}"):
+        os.makedirs(f"./Results/{filename_prefix}")
+
+    f = open(f"./Results/{filename_prefix}/statistics.txt", "w")
     f.write(output)
     f.close()
+
+    output_data = {"Actual" : dat[start_offset:], "Positive" : predictions[start_offset:],
+                   "Negative" : neg_predictions[start_offset:], "Average": avg_predictions[start_offset:]}
+    df = pd.DataFrame(output_data)
+    df.to_excel(f"./Results/{filename_prefix}/data.xlsx", index=False)
 
 if __name__ == '__main__':
     yf.pdr_override()
     for file in os.listdir("TestData"):
         data = np.loadtxt(f"TestData/{file}")
-        test_generator_function_optimisation(generate_new_node_naive, data,f"naive_{file.split('.')[0]}")
-        #test_generator_function(generate_new_node_isomorphism_trend_linear, data, f"isomorphism_trend_linear_{file.split('.')[0]}")
+        test_generator_function_optimisation(generate_new_node_zhang_extended, data,f"zhang_extended_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_zhang, data, f"zhang_{file.split('.')[0]}")
         # dat = [1.0, 0.5, 0.3, 0.7, 1.0, 0.5, 0.3, 0.8, 1.0, 0.4]
 
 

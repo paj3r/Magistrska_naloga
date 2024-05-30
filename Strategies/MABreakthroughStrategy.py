@@ -15,7 +15,6 @@ class SmaCross(Strategy):
 
     def next(self):
         if crossover(self.sma1, self.sma2):
-
             self.buy()
         elif crossover(self.sma2, self.sma1):
             self.sell()
