@@ -1,5 +1,6 @@
 from backtesting import Backtest, Strategy
 from backtesting.lib import crossover
+import pandas as pd
 
 from backtesting.test import SMA, GOOG
 
@@ -20,7 +21,8 @@ class SmaCross(Strategy):
             self.sell()
 
 
-bt = Backtest(GOOG, SmaCross,
+dataframe = pd.read_csv("../OHLCTestData/snp500_ohlc.csv", parse_dates=True)
+bt = Backtest(dataframe, SmaCross,
               cash=10000, commission=.002,
               exclusive_orders=True)
 

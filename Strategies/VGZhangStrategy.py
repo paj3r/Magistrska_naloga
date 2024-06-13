@@ -1,5 +1,6 @@
 from backtesting import Strategy
 from backtesting.lib import crossover
+import pandas as pd
 from backtesting import Backtest
 from backtesting.test import GOOG, EURUSD
 import pandas_ta as pta
@@ -32,14 +33,13 @@ class VGZhangStrategy(Strategy):
         # If the price is larger than the calculated AMA', then send a buy signal, otherwise close.
         mid = (self.zhang_signals[-1])
         if mid > self.data["Close"][-1]:
-            self.position.close()
             self.buy()
         else:
-            self.position.close()
             self.sell()
 
 
-bt = Backtest(GOOG, VGZhangStrategy, cash=10_000)
+dataframe = pd.read_csv("../OHLCTestData/btcusd_ohlc.csv", parse_dates=True)
+bt = Backtest(dataframe, VGZhangStrategy, cash=100000,  commission=.002, exclusive_orders=True)
 #stats = bt.optimize(neighbourhood_size=range(2, 15, 1), maximize='Return [%]')
 # stats = bt.optimize(
 #     short_length=range(5, 20, 5),

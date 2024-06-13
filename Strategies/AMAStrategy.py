@@ -2,6 +2,7 @@ from backtesting import Strategy
 from backtesting.lib import crossover
 from backtesting import Backtest
 from backtesting.test import GOOG, EURUSD
+import pandas as pd
 import pandas_ta as pta
 import numpy as np
 
@@ -39,20 +40,15 @@ class AmaStrategy(Strategy):
 
     def next(self):
         # If the price is larger than the calculated AMA', then send a buy signal, otherwise close.
-        if crossover(self.data.Close, self.daily_ama):
+        if crossover(self.data.Close, self.daily_ama) and not self.position.is_long:
             self.buy()
         elif crossover(self.daily_ama, self.data.Close):
-            self.sell()
+            self.position.close()
 
 
 
-bt = Backtest(GOOG, AmaStrategy, cash=10000, commission=.002,
-              exclusive_orders=True)
-# stats = bt.optimize(
-#     short_length=range(5, 20, 5),
-#     far_length=range(10, 100, 10),
-#     maximize='Sharpe Ratio',
-#     constraint=lambda param: param.short_length < param.far_length)
+dataframe = pd.read_csv("../OHLCTestData/btcusd_ohlc.csv", parse_dates=True)
+bt = Backtest(dataframe, AmaStrategy, cash=100000, exclusive_orders=True)
 stats = bt.run(short_length=5, far_length=10)
 print(stats)
 bt.plot()

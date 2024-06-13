@@ -86,7 +86,7 @@ def generate_new_node_isomorphism_trend_linear(time_series_values, ahead=1):
     model = LinearRegression()
     model.fit(indexes, values)
 
-    return time_series_values[last_node] + (model.coef_ + (sum(values_ahead_difference)/len(values_ahead_difference))) / 2
+    return (time_series_values[last_node] + (model.coef_ + (sum(values_ahead_difference)/len(values_ahead_difference))) / 2)[0]
 
 def generate_new_node_isomorphism(time_series_values, positive=True):
     if not positive:
@@ -146,6 +146,8 @@ def generate_node_minimal_weighted_distance(time_series_values):
 
 
 def generate_new_node_max_clique(time_series_values):
+    if len(time_series_values) <= 1:
+        return time_series_values[0]
     graph = NaturalVG()
     graph.build(time_series_values)
 
