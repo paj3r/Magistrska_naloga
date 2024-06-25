@@ -16,4 +16,6 @@ def get_and_save_1day_data(names, startdate, enddate, filename):
 
 if __name__ == '__main__':
     yf.pdr_override()
-    get_and_save_1day_data("BTC-USD", "2018-01-01", "2023-12-31", "OHLCTestData/btcusd_ohlc.csv")
+    get_and_save_1day_data("BTC-USD", "2024-01-01", "2024-06-31", "OHLCTestData/btcusd_ohlc_test.csv")
+    get_and_save_1day_data("^GSPC", "2024-01-01", "2024-06-31", "OHLCTestData/snp500_ohlc_test.csv")
+    get_and_save_1day_data("EURUSD=X", "2024-01-01", "2024-06-31", "OHLCTestData/eurusd_ohlc_test.csv")
