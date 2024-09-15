@@ -1,9 +1,14 @@
+from typing import List
+
 import pandas as pd
 import numpy as np
 import scipy
 import matplotlib.pyplot as plt
 import matplotlib.path as mpath
 import matplotlib.patches as mpatches
+from ts2vg import NaturalVG, HorizontalVG
+from random import randint
+import networkx as nx
 
 def ts_to_vg(data: np.array, times: np.array = None, horizontal: bool = False):
     # Convert timeseries to visibility graph with DC algorithm
@@ -45,7 +50,7 @@ def ts_to_vg(data: np.array, times: np.array = None, horizontal: bool = False):
     dc_vg(data, times, 0, len(data) - 1, network_matrix)
     return network_matrix
 
-def plot_ts_visibility(network: np.array, data: np.array, times: np.array = None, horizontal: bool = False):
+def plot_ts_visibility(network: np.array, data: np.array, times: np.array = None, horizontal: bool = False, highlight: List[int] = None):
     if times is None:
         times = np.arange(len(data))
 
@@ -66,7 +71,10 @@ def plot_ts_visibility(network: np.array, data: np.array, times: np.array = None
 
     # Plot graph
     for i in range(len(data)):
-        axs[1].plot(times[i], 0, marker='o', color='orange')
+        if highlight is not None and i in highlight:
+            axs[1].plot(times[i], 0, marker='o', color='white')
+        else:
+            axs[1].plot(times[i], 0, marker='o', color='orange')
 
     for i in range(len(data)):
         for j in range(i, len(data)):
@@ -83,7 +91,18 @@ def plot_ts_visibility(network: np.array, data: np.array, times: np.array = None
 if __name__ == '__main__':
 
     # Example data from video
-    dat = np.array([20, 40, 48, 70, 40, 60, 40, 100, 40, 80])
+    #og_dat = np.array([2, 8, 4, 4, 1, 4, 4, 6, 6, 10])
+    og_dat = np.array([8, 2, 6, 5, 10, 6, 5, 4, 4, 1])
+    dat = og_dat
+    graph = NaturalVG()
+    graph.build(dat)
+
+    network = graph.as_networkx()
+
+    pos_temp = nx.eccentricity(network)
+    mins = min(zip(pos_temp.values(), pos_temp.keys()))[0]
+    min_points = [k for k, v in pos_temp.items() if v == mins]
+    #dat = [-i for i in dat]
     #dat = np.array([.71, .53, .56, .29, .30, .77, .01, .76, .81, .71, .05, .41, .86, .79, .37, .96, .87, .06, .95, .36])
 
     # Cosine wave with 4 cycles (period = 12)
@@ -107,4 +126,4 @@ if __name__ == '__main__':
         row = f"{i} | {str(network[:, i])[1:-1]}"
         print(row)
 
-    plot_ts_visibility(network, dat, horizontal=False)
+    plot_ts_visibility(network, og_dat, horizontal=False, highlight=min_points)

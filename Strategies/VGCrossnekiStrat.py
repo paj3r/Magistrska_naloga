@@ -53,7 +53,7 @@ def shortest_path_length(close: np.array, lookback: int, positive:bool):
 
     return avg_short_dist_p if positive else avg_short_dist_n
 
-class VGCrossoverShortStrategy(Strategy):
+class VGCrossoverShortStrategyTest(Strategy):
     # Define the two MA lengths, for the AMA' calculation.
     # Used for later optimisation of these values.
     ma_short_len = 10
@@ -86,8 +86,8 @@ class VGCrossoverShortStrategy(Strategy):
                 self.buy(sl = price - self.atr[-1]*1, tp = price + self.atr[-1]*1)
 
 
-dataframe = pd.read_csv("../OHLCTestData/eurusd_ohlc.csv", index_col=0, parse_dates=True, infer_datetime_format=True)
-bt = Backtest(dataframe, VGCrossoverShortStrategy, cash=100000, exclusive_orders=True)
+dataframe = pd.read_csv("../OHLCTestData/eurusd_ohlc_test.csv", index_col=0, parse_dates=True, infer_datetime_format=True)
+bt = Backtest(dataframe, VGCrossoverShortStrategyTest, cash=100000, exclusive_orders=True)
 # stats = bt.optimize(behind=range(2, 50, 1), maximize='Return [%]')
 # stats = bt.optimize(
 #     short_length=range(5, 20, 5),

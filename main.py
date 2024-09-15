@@ -12,7 +12,7 @@ from heapq import nlargest
 import matplotlib.patches as patches
 from sklearn.metrics import mean_absolute_error as mae, mean_squared_error as mse, mean_absolute_percentage_error as mape
 from visibility_graph import *
-from ts_to_vg import plot_ts_visibility  # Plotting function for visibility graph
+from ts_to_vg import plot_ts_visibility, ts_to_vg  # Plotting function for visibility graph
 
 
 def print_statistics(actual, positive, negative, average, output, test_name):
@@ -109,15 +109,15 @@ def print_statistics(actual, positive, negative, average, output, test_name):
     negative = negative[~np.isnan(negative)]
     average = average[~np.isnan(average)]
     output += "\n"
-    output += f"Positive MAE: {mae(actual[:len(positive)], positive)}\n"
-    output += f"Negative MAE: {mae(actual[:len(negative)], negative)}\n"
-    output += f"Average MAE: {mae(actual[:len(average)], average)}\n\n"
-    output += f"Positive MSE: {mse(actual[:len(positive)], positive)}\n"
-    output += f"Negative MSE: {mse(actual[:len(negative)], negative)}\n"
-    output += f"Average MSE: {mse(actual[:len(average)], average)}\n\n"
-    output += f"Positive MAPE: {mape(actual[:len(positive)], positive)}\n"
-    output += f"Negative MAPE: {mape(actual[:len(negative)], negative)}\n"
-    output += f"Average MAPE: {mape(actual[:len(average)], average)}\n"
+    output += f"Positive MAE: {mae(actual[-len(positive):], positive)}\n"
+    output += f"Negative MAE: {mae(actual[-len(negative):], negative)}\n"
+    output += f"Average MAE: {mae(actual[-len(average):], average)}\n\n"
+    output += f"Positive MSE: {mse(actual[-len(positive):], positive)}\n"
+    output += f"Negative MSE: {mse(actual[-len(negative):], negative)}\n"
+    output += f"Average MSE: {mse(actual[-len(average):], average)}\n\n"
+    output += f"Positive MAPE: {mape(actual[-len(positive):], positive)}\n"
+    output += f"Negative MAPE: {mape(actual[-len(negative):], negative)}\n"
+    output += f"Average MAPE: {mape(actual[-len(average):], average)}\n"
 
     return output
 
@@ -703,7 +703,7 @@ def test_zhang_extended(dat):
 
 def test_generator_function_optimisation(generator_function, dat, filename_prefix):
     output = ""
-    length_range = range(2, 30)
+    length_range = range(2, 15)
     start_offset = 30
     neg_dat = [-x for x in dat]
 
@@ -717,6 +717,7 @@ def test_generator_function_optimisation(generator_function, dat, filename_prefi
     max_avg_ix = 0
     max_avg_preds = []
     for length in length_range:
+        print(f"Length size: {length} \n")
         output += f"Length size: {length} \n"
         predictions = np.empty(start_offset)
         neg_predictions = np.empty(start_offset)
@@ -786,6 +787,7 @@ def test_generator_function_optimisation(generator_function, dat, filename_prefi
     f.write(output)
     f.close()
 
+
 def test_generator_function(generator_function, dat, filename_prefix):
     output = ""
     neg_dat = [-x for x in dat]
@@ -854,11 +856,35 @@ def test_generator_function(generator_function, dat, filename_prefix):
     df.to_excel(f"./Results/{filename_prefix}/data.xlsx", index=False)
 
 if __name__ == '__main__':
-    yf.pdr_override()
+    #yf.pdr_override()
     for file in os.listdir("TestData"):
         data = np.loadtxt(f"TestData/{file}")
-        test_generator_function_optimisation(generate_new_node_zhang_extended, data,f"zhang_extended_{file.split('.')[0]}")
-        #test_generator_function(generate_new_node_zhang, data, f"zhang_{file.split('.')[0]}")
-        # dat = [1.0, 0.5, 0.3, 0.7, 1.0, 0.5, 0.3, 0.8, 1.0, 0.4]
+        # test_generator_function_optimisation(generate_new_node_naive_jc, data,
+        #                                      f"naive_jaccard_{file.split('.')[0]}")
+        # test_generator_function_optimisation(generate_new_node_naive_aa, data,
+        #                                      f"naive_adamic_adar_{file.split('.')[0]}")
+        # test_generator_function_optimisation(generate_new_node_naive_pr, data,
+        #                                      f"naive_pagerank_{file.split('.')[0]}")
+        # test_generator_function_optimisation(generate_new_node_naive_sr, data,
+        #                                      f"naive_simrank_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_colouring, data, f"1final_colouring_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_isomorphism, data, f"1final_isomorphism_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_minimal_weighted_distance, data, f"1final_weighted_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_max_clique, data, f"1final_max_clique_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_zhang_adamic_adar, data, f"1final_zhang_aa_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_zhang_jaccard, data, f"1final_zhang_jc_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_zhang_simrank, data, f"1final_zhang_sr_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_zhang_pagerank, data, f"1final_zhang_pr_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_zhang_extended_jaccard, data, f"1final_zhangext_jc_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_zhang_extended_simrank, data, f"1final_zhangext_sr_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_zhang_extended_pagerank, data, f"1final_zhangext_pr_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_zhang_extended_adamic_adar, data, f"1final_zhangext_aa_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_naive_aa, data, f"1final_naive_aa_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_naive_jc, data, f"1final_naive_jc_{file.split('.')[0]}")
+        #test_generator_function(generate_new_node_naive_pr, data, f"1final_naive_pr_{file.split('.')[0]}")
+        test_generator_function(generate_new_node_arima, data, f"1final_arima_{file.split('.')[0]}")
+        #--+test_generator_function(generate_new_node_naive_sr, data, f"1final_naive_sr_{file.split('.')[0]}")
+        #dat = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+
 
 

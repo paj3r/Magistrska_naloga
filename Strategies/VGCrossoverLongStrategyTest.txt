@@ -1,0 +1,32 @@
+  dataframe = pd.read_csv("../OHLCTestData/btcusd_ohlc_test.csv", index_col=0, parse_dates=True, infer_datetime_format=True)
+Start                     2018-01-01 00:00:00
+End                       2024-06-29 00:00:00
+Duration                   2371 days 00:00:00
+Exposure Time [%]                   68.676223
+Equity Final [$]               1403919.673104
+Equity Peak [$]                1848669.847006
+Return [%]                        1303.919673
+Buy & Hold Return [%]              345.826231
+Return (Ann.) [%]                   50.159012
+Volatility (Ann.) [%]               79.730916
+Sharpe Ratio                         0.629104
+Sortino Ratio                        1.594418
+Calmar Ratio                          1.15247
+Max. Drawdown [%]                  -43.523071
+Avg. Drawdown [%]                   -9.194512
+Max. Drawdown Duration      535 days 00:00:00
+Avg. Drawdown Duration       49 days 00:00:00
+# Trades                                   39
+Win Rate [%]                        38.461538
+Best Trade [%]                     333.405867
+Worst Trade [%]                    -13.343596
+Avg. Trade [%]                        7.13611
+Max. Trade Duration         194 days 00:00:00
+Avg. Trade Duration          41 days 00:00:00
+Profit Factor                        3.969889
+Expectancy [%]                      14.039179
+SQN                                  1.128288
+_strategy                 VGCrossoverLongS...
+_equity_curve                             ...
+_trades                       Size  EntryB...
+dtype: object

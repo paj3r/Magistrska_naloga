@@ -31,23 +31,24 @@ class AmaStrategy(Strategy):
 
     short_length = 5
     far_length = 10
+    gg = 0
 
     def init(self):
         # Precompute the AMA' values.
-        self.daily_ama = self.I(calculate_AMA, self.data.Close, self.short_length, self.far_length)
+        #self.daily_ama = self.I(calculate_AMA, self.data.Close, self.short_length, self.far_length)
         # self.short_ma = self.I(pta.sma, self.data.Close, 5)
         # self.long_ma = self.I(pta.sma, self.data.Close, 10)
+        self.buy()
+        self.gg = len(self.data)
 
     def next(self):
         # If the price is larger than the calculated AMA', then send a buy signal, otherwise close.
-        if crossover(self.data.Close, self.daily_ama) and not self.position.is_long:
-            self.buy()
-        elif crossover(self.daily_ama, self.data.Close):
-            self.position.close()
+        if(len(self.data) >= self.gg):
+            self.sell()
 
 
 
-dataframe = pd.read_csv("../OHLCTestData/btcusd_ohlc.csv", parse_dates=True)
+dataframe = pd.read_csv("../OHLCTestData/btcusd_ohlc_test.csv", parse_dates=True)
 bt = Backtest(dataframe, AmaStrategy, cash=100000, exclusive_orders=True)
 stats = bt.run(short_length=5, far_length=10)
 print(stats)

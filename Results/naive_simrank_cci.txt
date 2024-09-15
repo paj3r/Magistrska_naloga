@@ -1,0 +1,132 @@
+Length size: 2 
+Data length: 216
+Hits: 122
+Hitrate pos: 0.5648148148148148
+Hits neg: 155
+Hitrate neg: 0.7175925925925926
+Hits avg: 155
+Hitrate avg: 0.7175925925925926
+
+Length size: 3 
+Data length: 216
+Hits: 102
+Hitrate pos: 0.4722222222222222
+Hits neg: 143
+Hitrate neg: 0.6620370370370371
+Hits avg: 149
+Hitrate avg: 0.6898148148148148
+
+Length size: 4 
+Data length: 216
+Hits: 98
+Hitrate pos: 0.4537037037037037
+Hits neg: 150
+Hitrate neg: 0.6944444444444444
+Hits avg: 145
+Hitrate avg: 0.6712962962962963
+
+Length size: 5 
+Data length: 216
+Hits: 96
+Hitrate pos: 0.4444444444444444
+Hits neg: 150
+Hitrate neg: 0.6944444444444444
+Hits avg: 150
+Hitrate avg: 0.6944444444444444
+
+Length size: 6 
+Data length: 216
+Hits: 96
+Hitrate pos: 0.4444444444444444
+Hits neg: 152
+Hitrate neg: 0.7037037037037037
+Hits avg: 150
+Hitrate avg: 0.6944444444444444
+
+Length size: 7 
+Data length: 216
+Hits: 102
+Hitrate pos: 0.4722222222222222
+Hits neg: 150
+Hitrate neg: 0.6944444444444444
+Hits avg: 151
+Hitrate avg: 0.6990740740740741
+
+Length size: 8 
+Data length: 216
+Hits: 96
+Hitrate pos: 0.4444444444444444
+Hits neg: 149
+Hitrate neg: 0.6898148148148148
+Hits avg: 154
+Hitrate avg: 0.7129629629629629
+
+Length size: 9 
+Data length: 216
+Hits: 100
+Hitrate pos: 0.46296296296296297
+Hits neg: 147
+Hitrate neg: 0.6805555555555556
+Hits avg: 149
+Hitrate avg: 0.6898148148148148
+
+Length size: 10 
+Data length: 216
+Hits: 104
+Hitrate pos: 0.48148148148148145
+Hits neg: 150
+Hitrate neg: 0.6944444444444444
+Hits avg: 151
+Hitrate avg: 0.6990740740740741
+
+Length size: 11 
+Data length: 216
+Hits: 96
+Hitrate pos: 0.4444444444444444
+Hits neg: 149
+Hitrate neg: 0.6898148148148148
+Hits avg: 149
+Hitrate avg: 0.6898148148148148
+
+Length size: 12 
+Data length: 216
+Hits: 100
+Hitrate pos: 0.46296296296296297
+Hits neg: 151
+Hitrate neg: 0.6990740740740741
+Hits avg: 151
+Hitrate avg: 0.6990740740740741
+
+Length size: 13 
+Data length: 216
+Hits: 106
+Hitrate pos: 0.49074074074074076
+Hits neg: 152
+Hitrate neg: 0.7037037037037037
+Hits avg: 152
+Hitrate avg: 0.7037037037037037
+
+Length size: 14 
+Data length: 216
+Hits: 106
+Hitrate pos: 0.49074074074074076
+Hits neg: 152
+Hitrate neg: 0.7037037037037037
+Hits avg: 149
+Hitrate avg: 0.6898148148148148
+
+Max positive: 0.5648148148148148 At neighbourhood size: 2
+Max negative: 0.7175925925925926 At neighbourhood size: 2
+Max average: 0.7175925925925926 At neighbourhood size: 2
+
+Positive MAE: 498.2530247915665
+Negative MAE: 515.8628787878787
+Average MAE: 507.05795178972255
+
+Positive MSE: 284713.5797092173
+Negative MSE: 305162.58893835236
+Average MSE: 294765.8187826385
+
+Positive MAPE: 0.0802929068020983
+Negative MAPE: 0.0830915281981504
+Average MAPE: 0.08169221750012434

@@ -1,0 +1,32 @@
+dataframe = pd.read_csv("../OHLCTestData/eurusd_ohlc_test.csv", index_col=0, parse_dates=True, infer_datetime_format=True)
+Start                     2018-01-01 00:00:00
+End                       2024-06-28 00:00:00
+Duration                   2370 days 00:00:00
+Exposure Time [%]                   96.694215
+Equity Final [$]                121887.022286
+Equity Peak [$]                 135816.881753
+Return [%]                          21.887022
+Buy & Hold Return [%]              -10.833333
+Return (Ann.) [%]                    2.988104
+Volatility (Ann.) [%]                8.498141
+Sharpe Ratio                         0.351618
+Sortino Ratio                         0.53361
+Calmar Ratio                          0.25405
+Max. Drawdown [%]                  -11.761869
+Avg. Drawdown [%]                   -2.213955
+Max. Drawdown Duration      477 days 00:00:00
+Avg. Drawdown Duration       53 days 00:00:00
+# Trades                                  389
+Win Rate [%]                        30.848329
+Best Trade [%]                       5.737705
+Worst Trade [%]                     -4.587156
+Avg. Trade [%]                       0.050894
+Max. Trade Duration          62 days 00:00:00
+Avg. Trade Duration           5 days 00:00:00
+Profit Factor                        1.222686
+Expectancy [%]                       0.054539
+SQN                                   1.13762
+_strategy                 VGCrossoverShort...
+_equity_curve                             ...
+_trades                          Size  Ent...
+dtype: object
