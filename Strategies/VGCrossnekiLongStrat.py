@@ -114,7 +114,7 @@ class VGCrossoverLongStrategyTesttwo(Strategy):
 
 
 dataframe = pd.read_csv("../OHLCTestData/btcusd_ohlc_test.csv", index_col=0, parse_dates=True, infer_datetime_format=True)
-bt = Backtest(dataframe, VGCrossoverLongStrategyTest, cash=100000, exclusive_orders=True)
+bt = Backtest(dataframe, VGCrossoverLongStrategyTesttwo, cash=100000, exclusive_orders=True)
 # stats = bt.optimize(lookback=range(10, 100, 10), maximize='Return [%]')
 # stats = bt.optimize(
 #     short_length=range(5, 20, 5),
